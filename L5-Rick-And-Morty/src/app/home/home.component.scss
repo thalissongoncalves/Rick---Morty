@@ -1,0 +1,87 @@
+main {
+    background-color: #272B33;
+    height: 100vh;
+}
+
+.conteudo {
+    display: flex;
+    flex-direction: row;
+    padding-top: 7%;
+}
+
+.conteudo-one {
+    margin-left: 60px;
+    margin-top: 55px;
+    width: 60%;
+}
+
+.conteudo-one h1 {
+    color: white;
+    font-size: 77px;
+}
+
+.explore-button {
+    background-color: white;
+    border: none;
+    border-radius: 30px;
+    color: rgba(0, 0, 0, 0.832);
+    font-size: 20px;
+    margin-top: 40px;
+    padding: 20px;
+    transition: transform 0.3s ease;
+}
+
+.explore-button:hover {
+    background-color: rgb(86, 255, 202);
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+.conteudo-two {
+    align-items: center;
+    // background-image: url('../assets/card-background-home.jpg');
+    background-position: 70% bottom;
+    border-radius: 30px;
+    display: flex;
+    height: 84vh;
+    justify-content: center;
+    margin-left: 20px;
+    width: 35%;
+}
+
+.card-conteudo {
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.850);
+    border-radius: 50px;
+    display: flex;
+    flex-direction: column;
+    height: 65vh;
+    justify-content: space-evenly;
+    width: 60%;
+}
+
+.rick-photo {
+    border-radius: 40%;
+    width: 200px;
+}
+
+.card-conteudo h2 {
+    color: rgba(0, 0, 0, 0.832);
+    font-size: 30px;
+}
+
+.card-conteudo hr {
+    background-color: black;
+    height: 1px;
+    width: 95%;
+}
+
+.card-identidade {
+    color: rgba(0, 0, 0, 0.832);
+    display: flex;
+    flex-direction: flow;
+    font-size: 20px;
+    font-weight: bold;
+    justify-content: space-around;
+    width: 100%;
+}
