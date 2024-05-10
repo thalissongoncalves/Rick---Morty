@@ -1,0 +1,14 @@
+<app-cabecalho></app-cabecalho>
+<app-sidebar></app-sidebar>
+<main>
+    <section class="conteudo">
+        <ng-container *ngFor="let location of locations">
+            <div class="card">
+                <p class="card-name">{{ location.name }}</p>
+                <span class="card-location">{{ location.type }}</span>
+                <hr>
+                <button class="card-button-details" type="button">Detalhes</button>
+            </div>
+        </ng-container>
+    </section>
+</main>

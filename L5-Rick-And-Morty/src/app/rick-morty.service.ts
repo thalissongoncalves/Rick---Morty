@@ -26,7 +26,21 @@ export class RickMortyService {
     try {
       const response = await fetch(`${this.apiUrl}/episode?page=${page}`);
       if (!response.ok) {
-        throw new Error("Erro ao buscar episodios");
+        throw new Error("Erro ao buscar episódios");
+      }
+      const data = await response.json();
+      return data.results;
+    } catch (error) {
+      console.error("Erro:", error);
+      return [];
+    }
+  }
+
+  async getLocations(page: number): Promise<any> {
+    try {
+      const response = await fetch(`${this.apiUrl}/location?page=${page}`);
+      if (!response.ok) {
+        throw new Error("Erro ao buscar localizações");
       }
       const data = await response.json();
       return data.results;

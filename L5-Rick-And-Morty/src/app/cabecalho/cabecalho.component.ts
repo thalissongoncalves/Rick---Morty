@@ -23,7 +23,7 @@ export class CabecalhoComponent {
     this.router.navigateByUrl('/episodios');
   }
 
-  changeLinkToLocalizações() {
+  changeLinkToLocalizacoes() {
     this.router.navigateByUrl('/localizacoes');
   }
 }
