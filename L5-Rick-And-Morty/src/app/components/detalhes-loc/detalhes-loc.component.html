@@ -9,10 +9,12 @@
         </ng-container>
         <h2 class="list-title">Personagens Habitantes: </h2>
         <div class="list-characters">
-            <ng-container *ngFor="let characterName of characterNames; let i = index">
+            <ng-container *ngFor="let character of characterNames; let i = index">
                 <div class="card-character">
-                    <p>{{ characterName }}</p>
-                    <img src={{characterImages[i]}} >
+                    <p>{{ character }}</p>
+                    <button type="button" class="card-button" (click)="changeCharacterId(charactersId[i])">
+                        <img src={{characterImages[i]}} >
+                    </button>
                 </div>
             </ng-container>
         </div>

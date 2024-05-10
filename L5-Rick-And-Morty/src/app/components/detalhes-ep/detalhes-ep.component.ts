@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CabecalhoComponent } from '../cabecalho/cabecalho.component';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { RickMortyService } from '../../rick-morty.service';
 
 @Component({
@@ -18,8 +18,9 @@ export class DetalhesEpComponent {
   charactersId: string[] = [];
   characterNames: string[] = [];
   characterImages: string[] = [];
+  charId: number[] = [];
 
-  constructor(private route: ActivatedRoute, private rickMortyFetchService: RickMortyService) {}
+  constructor(private route: ActivatedRoute, private rickMortyFetchService: RickMortyService, private router: Router) {}
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params["id"];
@@ -34,6 +35,7 @@ export class DetalhesEpComponent {
           let charId: number = Number(ep);
           this.rickMortyFetchService.getCharacterById(charId)
             .then((data: any) => {
+              this.charId = this.charId.concat(data.id);
               this.characterNames = this.characterNames.concat(data.name);
               this.characterImages = this.characterImages.concat(data.image);
             })
@@ -47,6 +49,9 @@ export class DetalhesEpComponent {
         console.error("Erro:", error);
       }
     );
-    
+  }
+
+  changeCharacterId(id: any) {
+    this.router.navigateByUrl(`/personagens/${id}`);
   }
 }

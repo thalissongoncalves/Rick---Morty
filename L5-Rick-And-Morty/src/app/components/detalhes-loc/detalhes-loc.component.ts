@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CabecalhoComponent } from '../cabecalho/cabecalho.component';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { RickMortyService } from '../../rick-morty.service';
 
 @Component({
@@ -19,7 +19,7 @@ export class DetalhesLocComponent {
   characterNames: string[] = [];
   characterImages: string[] = [];
 
-  constructor(private route: ActivatedRoute, private rickMortyFetchService: RickMortyService) {}
+  constructor(private route: ActivatedRoute, private rickMortyFetchService: RickMortyService, private router: Router) {}
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params["id"];
@@ -48,5 +48,9 @@ export class DetalhesLocComponent {
       }
     );
     
+  }
+
+  changeCharacterId(id: any) {
+    this.router.navigateByUrl(`/personagens/${id}`);
   }
 }

@@ -21,7 +21,11 @@
             <h2 class="two-title">Episódios de Aparecimento: </h2>
             <div class="list-episodes">
                 <ng-container *ngFor="let episodeName of episodeNames; let i = index">
-                    <p><span class="episode-number">{{ episodeNumbers[i] }}</span> - {{ episodeName }}</p>
+                    <button  type="button" class="list-button" (click)="changeEpisodeId(episodesId[i])">
+                        <span class="episode-number">
+                            {{ episodeNumbers[i] }}
+                        </span> - {{ episodeName }}
+                    </button>
                 </ng-container>
             </div>
         </div>

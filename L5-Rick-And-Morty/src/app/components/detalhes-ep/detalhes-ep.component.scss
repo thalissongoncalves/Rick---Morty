@@ -49,5 +49,11 @@
     -webkit-box-shadow: 5px 5px 10px 0px rgba(0,0,0,1);
     -moz-box-shadow: 5px 5px 10px 0px rgba(0,0,0,1);
     box-shadow: 5px 5px 10px 0px rgba(0,0,0,1);
+    cursor: pointer;
     width: 100px;
+}
+
+.card-button {
+    background-color: transparent;
+    border: none;
 }
