@@ -62,6 +62,12 @@ main {
     width: 60%;
 }
 
+.card-especies {
+    color: #272B33;
+    font-size: 1.2vw;
+    font-weight: bold;
+}
+
 .rick-photo {
     border-radius: 40%;
     height: 30vh;
@@ -78,8 +84,8 @@ main {
 }
 
 .card-conteudo hr {
-    background-color: black;
-    height: 1px;
+    background-color: #272B33;
+    height: 0.5px;
     width: 95%;
 }
 
@@ -89,6 +95,6 @@ main {
     flex-direction: flow;
     font-size: 3vh;
     font-weight: bold;
-    justify-content: space-around;
+    justify-content: space-evenly;
     width: 100%;
 }
