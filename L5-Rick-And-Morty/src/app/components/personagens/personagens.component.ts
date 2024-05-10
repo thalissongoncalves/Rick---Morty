@@ -1,8 +1,9 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { CabecalhoComponent } from '../cabecalho/cabecalho.component';
 import { SidebarComponent } from '../sidebar/sidebar.component';
-import { RickMortyService } from '../rick-morty.service';
+import { RickMortyService } from '../../rick-morty.service';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-personagens',
@@ -16,7 +17,7 @@ export class PersonagensComponent implements OnInit {
   isLoading: boolean = false;
   page: number = 1;
 
-  constructor(private rickMortyFetchService: RickMortyService) {}
+  constructor(private rickMortyFetchService: RickMortyService, private router: Router) {}
 
   ngOnInit(): void {
     this.loadCharacters(this.page);
@@ -43,6 +44,10 @@ export class PersonagensComponent implements OnInit {
         console.error("Erro:", error);
         this.isLoading = false;
       });
+  }
+
+  changeCharacterId(id: number) {
+    this.router.navigateByUrl(`/personagens/${id}`);
   }
   
 }

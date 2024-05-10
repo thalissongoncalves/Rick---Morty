@@ -1,41 +1,42 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { CabecalhoComponent } from '../cabecalho/cabecalho.component';
 import { SidebarComponent } from '../sidebar/sidebar.component';
-import { RickMortyService } from '../rick-morty.service';
 import { CommonModule } from '@angular/common';
+import { RickMortyService } from '../../rick-morty.service';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-episodios',
+  selector: 'app-localizacoes',
   standalone: true,
   imports: [CabecalhoComponent, SidebarComponent, CommonModule],
-  templateUrl: './episodios.component.html',
-  styleUrl: './episodios.component.scss'
+  templateUrl: './localizacoes.component.html',
+  styleUrl: './localizacoes.component.scss'
 })
-export class EpisodiosComponent implements OnInit {
-  episodes: any[] = [];
+export class LocalizacoesComponent {
+  locations: any[] = [];
   isLoading: boolean = false;
   page: number = 1;
 
-  constructor(private rickMortyFetchService: RickMortyService) {}
+  constructor(private rickMortyFetchService: RickMortyService, private router: Router) {}
 
   ngOnInit(): void {
-    this.loadEpisodes(this.page);
+    this.loadLocations(this.page);
   }
 
   @HostListener('window:scroll', ['$event'])
   onScroll(event: any): void {
     if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight - 10) {
       if (!this.isLoading) {
-        this.loadEpisodes(this.page)
+        this.loadLocations(this.page)
       }
     }
   }
 
-  loadEpisodes(page: number): void {
+  loadLocations(page: number): void {
     this.isLoading = true;
-    this.rickMortyFetchService.getEpisodies(page)
+    this.rickMortyFetchService.getLocations(page)
       .then((data: any) => {
-        this.episodes = this.episodes.concat(data);
+        this.locations = this.locations.concat(data);
         this.isLoading = false;
         this.page++;
       })
@@ -43,5 +44,9 @@ export class EpisodiosComponent implements OnInit {
         console.error("Erro:", error);
         this.isLoading = false;
       });
+  }
+
+  changeLocationId(id: number) {
+    this.router.navigateByUrl(`/localizacoes/${id}`);
   }
 }

@@ -1,0 +1,25 @@
+<app-cabecalho></app-cabecalho>
+<app-sidebar></app-sidebar>
+<main>
+    <section class="conteudo">
+        <div class="conteudo-one">
+            <ng-container *ngFor="let character of character">
+                <h1 class="character-name">{{ character.name }}</h1>
+                <img src={{character.image}} alt="Foto do {{character.name}}" class="character-photo" >
+                <p class="character-status">{{ character.status }}</p>
+                <p class="character-gender"><span>Gender: </span>{{ character.gender }}</p>
+                <p class="character-location"><span>Location: </span>{{ character.location.name }}</p>
+                <p class="character-origin"><span>Origin: </span>{{ character.origin.name }}</p>
+                <p class="character-specie"><span>Specie: </span>{{ character.species }}</p>
+            </ng-container>
+        </div>
+        <div class="conteudo-two">
+            <h2 class="two-title">Episódios de Aparecimento: </h2>
+            <div class="list-episodes">
+                <ng-container *ngFor="let episodeName of episodeNames; let i = index">
+                    <p><span class="episode-number">{{ episodeNumbers[i] }}</span> - {{ episodeName }}</p>
+                </ng-container>
+            </div>
+        </div>
+    </section>
+</main>

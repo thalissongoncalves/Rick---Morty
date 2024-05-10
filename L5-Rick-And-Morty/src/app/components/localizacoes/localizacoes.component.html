@@ -7,7 +7,7 @@
                 <p class="card-name">{{ location.name }}</p>
                 <span class="card-location">{{ location.type }}</span>
                 <hr>
-                <button class="card-button-details" type="button">Detalhes</button>
+                <button class="card-button-details" type="button" (click)="changeLocationId(location.id)">Detalhes</button>
             </div>
         </ng-container>
     </section>

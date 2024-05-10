@@ -7,7 +7,7 @@
                 <p class="card-name">{{ episode.name }}</p>
                 <span class="card-episode">{{ episode.episode }}</span>
                 <hr>
-                <button class="card-button-details" type="button">Detalhes</button>
+                <button class="card-button-details" type="button" (click)="changeEpisodeId(episode.id)">Detalhes</button>
             </div>
         </ng-container>
     </section>

@@ -22,6 +22,20 @@ export class RickMortyService {
     }
   }
 
+  async getCharacterById(id: number): Promise<any> {
+    try {
+      const response = await fetch(`${this.apiUrl}/character/${id}`);
+      if (!response.ok) {
+        throw new Error("Erro ao buscar personagem");
+      }
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error("Erro:", error);
+      return null;
+    }
+  }
+
   async getEpisodies(page: number): Promise<any> {
     try {
       const response = await fetch(`${this.apiUrl}/episode?page=${page}`);
@@ -33,6 +47,20 @@ export class RickMortyService {
     } catch (error) {
       console.error("Erro:", error);
       return [];
+    }
+  }
+
+  async getEpisodeById(id: number): Promise<any> {
+    try {
+      const response = await fetch(`${this.apiUrl}/episode/${id}`);
+      if (!response.ok) {
+        throw new Error("Erro ao buscar episódio");
+      }
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error("Erro:", error);
+      return null;
     }
   }
 

@@ -1,12 +1,12 @@
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './home/home.component';
+import { HomeComponent } from './components/home/home.component';
 import { NgModule } from '@angular/core';
-import { PersonagensComponent } from './personagens/personagens.component';
-import { DetalhesPComponent } from './detalhes-p/detalhes-p.component';
-import { EpisodiosComponent } from './episodios/episodios.component';
-import { DetalhesEpComponent } from './detalhes-ep/detalhes-ep.component';
-import { LocalizacoesComponent } from './localizacoes/localizacoes.component';
-import { DetalhesLocComponent } from './detalhes-loc/detalhes-loc.component';
+import { PersonagensComponent } from './components/personagens/personagens.component';
+import { DetalhesPComponent } from './components/detalhes-p/detalhes-p.component';
+import { EpisodiosComponent } from './components/episodios/episodios.component';
+import { DetalhesEpComponent } from './components/detalhes-ep/detalhes-ep.component';
+import { LocalizacoesComponent } from './components/localizacoes/localizacoes.component';
+import { DetalhesLocComponent } from './components/detalhes-loc/detalhes-loc.component';
 
 export const routes: Routes = [
     { path: '', component: HomeComponent },

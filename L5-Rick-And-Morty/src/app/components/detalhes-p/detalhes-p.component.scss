@@ -1,0 +1,48 @@
+.conteudo {
+    background-color: #272B33;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    padding-left: 18%;
+    padding-right: 1.5%;
+}
+
+.conteudo-one {
+    align-items: left;
+    display: flex;
+    flex-direction: column;
+    margin-top: 10%;
+    width: 30%;
+}
+
+.character-name, .character-photo, .character-status, .character-gender, .character-location, .character-origin, .character-specie {
+    margin-bottom: 10px;
+}
+
+.conteudo-two {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    margin-top: 10%;
+    width: 70%;
+}
+
+.two-title {
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.list-episodes {
+    display: grid;
+    font-size: 15px;
+    grid-template-columns: 1fr 1fr;
+    margin-left: 80px;
+}
+
+.list-episodes p {
+    margin: 10px;
+}
+
+.episode-number {
+    font-weight: bold;
+}

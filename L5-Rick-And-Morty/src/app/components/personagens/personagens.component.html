@@ -12,7 +12,7 @@
                 </div>
                 <hr>
                 <p class="card-species">{{ character.species }}</p>
-                <button class="card-button-details" type="button">Detalhes</button>
+                <button class="card-button-details" type="button" (click)="changeCharacterId(character.id)">Detalhes</button>
             </div>
         </ng-container>
     </section>
