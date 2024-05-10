@@ -1,1 +1,20 @@
-<p>detalhes-loc works!</p>
+<app-cabecalho></app-cabecalho>
+<app-sidebar></app-sidebar>
+<main>
+    <section class="conteudo">
+        <ng-container *ngFor="let location of locations">
+            <h1 class="location-name">{{ location.name }}</h1>
+            <p class="location-type"><span>Type: </span>{{ location.type }}</p>
+            <p class="location-dimension"><span>Dimension: </span>{{ location.dimension }}</p>
+        </ng-container>
+        <h2 class="list-title">Personagens Habitantes: </h2>
+        <div class="list-characters">
+            <ng-container *ngFor="let characterName of characterNames; let i = index">
+                <div class="card-character">
+                    <p>{{ characterName }}</p>
+                    <img src={{characterImages[i]}} >
+                </div>
+            </ng-container>
+        </div>
+    </section>
+</main>

@@ -78,4 +78,18 @@ export class RickMortyService {
     }
   }
 
+  async getLocationById(id: number): Promise<any> {
+    try {
+      const response = await fetch(`${this.apiUrl}/location/${id}`);
+      if (!response.ok) {
+        throw new Error("Erro ao buscar localização");
+      }
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error("Erro:", error);
+      return null;
+    }
+  }
+
 }
