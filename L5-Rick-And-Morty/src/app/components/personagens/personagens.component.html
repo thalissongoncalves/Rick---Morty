@@ -8,7 +8,11 @@
                 <p class="card-name">{{ character.name }}</p>
                 <div class="card-identify">
                     <p class="card-gener">{{ character.gender }}</p>
-                    <p class="card-status">{{ character.status }}</p>
+                    <p id="card-status" [ngClass]="{
+                        'character-alive': character.status === 'Alive',
+                        'character-dead': character.status === 'Dead',
+                        'character-unknown': character.status === 'unknown'
+                      }">{{ character.status }}</p>
                 </div>
                 <hr>
                 <p class="card-species">{{ character.species }}</p>

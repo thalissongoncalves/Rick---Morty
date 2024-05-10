@@ -1,1 +1,20 @@
-<p>detalhes-ep works!</p>
+<app-cabecalho></app-cabecalho>
+<app-sidebar></app-sidebar>
+<main>
+    <section class="conteudo">
+        <ng-container *ngFor="let episode of episode">
+            <h1 class="episode-name">{{ episode.name }}</h1>
+            <p class="episode-number"><span>Season/EP: </span>{{ episode.episode }}</p>
+            <p class="episode-date"><span>Date: </span>{{ episode.air_date }}</p>
+        </ng-container>
+        <h2 class="list-title">Personagens Que Apareceram: </h2>
+        <div class="list-characters">
+            <ng-container *ngFor="let characterName of characterNames; let i = index">
+                <div class="card-character">
+                    <p>{{ characterName }}</p>
+                    <img src={{characterImages[i]}} >
+                </div>
+            </ng-container>
+        </div>
+    </section>
+</main>

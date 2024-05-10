@@ -15,8 +15,33 @@
     width: 30%;
 }
 
-.character-name, .character-photo, .character-status, .character-gender, .character-location, .character-origin, .character-specie {
+.conteudo-one span {
+    font-weight: bold;
+}
+
+.character-name, .character-photo, #character-status, .character-gender, .character-location, .character-origin, .character-specie {
     margin-bottom: 10px;
+}
+
+.character-alive {
+    background-color: green;
+    border-radius: 20px;
+    padding: 5px;
+    text-align: center;
+}
+
+.character-dead {
+    background-color: rgb(176, 0, 0);
+    border-radius: 20px;
+    padding: 5px;
+    text-align: center;
+}
+
+.character-unknown {
+    background-color: gray;
+    border-radius: 20px;
+    padding: 5px;
+    text-align: center;
 }
 
 .conteudo-two {

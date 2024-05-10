@@ -6,7 +6,11 @@
             <ng-container *ngFor="let character of character">
                 <h1 class="character-name">{{ character.name }}</h1>
                 <img src={{character.image}} alt="Foto do {{character.name}}" class="character-photo" >
-                <p class="character-status">{{ character.status }}</p>
+                <p id="character-status" [ngClass]="{
+                    'character-alive': character.status === 'Alive',
+                    'character-dead': character.status === 'Dead',
+                    'character-unknown': character.status === 'unknown'
+                  }">{{ character.status }}</p>
                 <p class="character-gender"><span>Gender: </span>{{ character.gender }}</p>
                 <p class="character-location"><span>Location: </span>{{ character.location.name }}</p>
                 <p class="character-origin"><span>Origin: </span>{{ character.origin.name }}</p>
