@@ -4,6 +4,7 @@ main {
 }
 
 .conteudo {
+    background-color: #272B33;
     display: flex;
     flex-direction: row;
     padding-top: 7%;
@@ -11,13 +12,14 @@ main {
 
 .conteudo-one {
     margin-left: 60px;
-    margin-top: 55px;
+    padding-top: 3%;
     width: 60%;
 }
 
 .conteudo-one h1 {
     color: white;
-    font-size: 77px;
+    font-size: 12vh;
+    font-size: 5vw;
 }
 
 .explore-button {
@@ -25,9 +27,9 @@ main {
     border: none;
     border-radius: 30px;
     color: rgba(0, 0, 0, 0.832);
-    font-size: 20px;
-    margin-top: 40px;
-    padding: 20px;
+    font-size: 3vh;
+    margin-top: 5%;
+    padding: 3%;
     transition: transform 0.3s ease;
 }
 
@@ -62,12 +64,17 @@ main {
 
 .rick-photo {
     border-radius: 40%;
-    width: 200px;
+    height: 30vh;
+    width: 12vw;
 }
 
 .card-conteudo h2 {
     color: rgba(0, 0, 0, 0.832);
-    font-size: 30px;
+    font-size: 4vh;
+}
+
+.card-conteudo span {
+    font-size: 3vh;
 }
 
 .card-conteudo hr {
@@ -80,7 +87,7 @@ main {
     color: rgba(0, 0, 0, 0.832);
     display: flex;
     flex-direction: flow;
-    font-size: 20px;
+    font-size: 3vh;
     font-weight: bold;
     justify-content: space-around;
     width: 100%;
