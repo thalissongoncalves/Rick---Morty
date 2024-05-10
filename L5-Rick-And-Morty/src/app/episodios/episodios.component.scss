@@ -1,0 +1,48 @@
+.conteudo {
+    background-color: #272B33;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    padding-top: 8%;
+    padding-left: 18%;
+    padding-right: 1.5%;
+}
+
+.card  {
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.850);
+    border-radius: 30px;
+    color: #272B33;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin: 20px;
+    padding: 15px;
+    text-align: center;
+}
+
+.card-name {
+    font-size: 1.5vw;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.card-episode {
+    margin-bottom: 10px;
+}
+
+.card-button-details {
+    background-color: white;
+    border: 1px solid #272B33;
+    border-radius: 20px;
+    color: #272B33;
+    font-size: 13px;
+    padding: 3%;
+    width: 8vw;
+    transition: transform 0.3s ease;
+}
+
+.card-button-details:hover {
+    background-color: rgb(86, 255, 202);
+    cursor: pointer;
+    transform: scale(1.1);
+}

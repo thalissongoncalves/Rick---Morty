@@ -1,1 +1,14 @@
-<p>episodios works!</p>
+<app-cabecalho></app-cabecalho>
+<app-sidebar></app-sidebar>
+<main>
+    <section class="conteudo">
+        <ng-container *ngFor="let episode of episodes">
+            <div class="card">
+                <p class="card-name">{{ episode.name }}</p>
+                <span class="card-episode">{{ episode.episode }}</span>
+                <hr>
+                <button class="card-button-details" type="button">Detalhes</button>
+            </div>
+        </ng-container>
+    </section>
+</main>
