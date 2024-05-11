@@ -22,6 +22,20 @@ export class RickMortyService {
     }
   }
 
+  async getAllCharacters(page: number): Promise<any> {
+    try {
+      const response = await fetch(`${this.apiUrl}/character?page=${page}`);
+      if (!response.ok) {
+        throw new Error("Erro ao buscar personagens");
+      }
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error("Erro:", error);
+      return [];
+    }
+  }
+
   async getCharacterById(id: number): Promise<any> {
     try {
       const response = await fetch(`${this.apiUrl}/character/${id}`);

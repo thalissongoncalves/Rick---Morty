@@ -30,8 +30,7 @@
     align-items: center;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    margin-left: 12%;
+    justify-content: center;
     width: 100%;
 }
 
@@ -66,7 +65,6 @@
 .logo {
     background-color: transparent;
     height: 80%;
-    margin-left: 100%;
     margin-top: 5px;
     transition: transform 0.3s ease;
 }
@@ -79,4 +77,6 @@
 .button-logo {
     background-color: transparent;
     border: none;
+    cursor: pointer;
+    margin-left: 5.5%;
 }

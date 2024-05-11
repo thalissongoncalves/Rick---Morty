@@ -1,23 +1,44 @@
 <app-cabecalho></app-cabecalho>
 <app-sidebar></app-sidebar>
 <main>
-    <section class="conteudo">
-        <ng-container *ngFor="let character of characters">
-            <div class="card">
-                <img src={{character.image}} class="card-image" alt="Foto do {{character.name}}" >
-                <p class="card-name">{{ character.name }}</p>
-                <div class="card-identify">
-                    <p class="card-gener">{{ character.gender }}</p>
-                    <p id="card-status" [ngClass]="{
-                        'character-alive': character.status === 'Alive',
-                        'character-dead': character.status === 'Dead',
-                        'character-unknown': character.status === 'unknown'
-                      }">{{ character.status }}</p>
+    <section class="conteudo" id="character-list">
+        <!-- <ng-container *ngIf="!setOrigin"> -->
+            <ng-container *ngFor="let character of characters">
+                <div class="card">
+                    <img src={{character.image}} class="card-image" alt="Foto do {{character.name}}" >
+                    <p class="card-name">{{ character.name }}</p>
+                    <div class="card-identify">
+                        <p class="card-gener">{{ character.gender }}</p>
+                        <p id="card-status" [ngClass]="{
+                            'character-alive': character.status === 'Alive',
+                            'character-dead': character.status === 'Dead',
+                            'character-unknown': character.status === 'unknown'
+                          }">{{ character.status }}</p>
+                    </div>
+                    <hr>
+                    <p class="card-species">{{ character.species }}</p>
+                    <button class="card-button-details" type="button" (click)="changeCharacterId(character.id)">Detalhes</button>
                 </div>
-                <hr>
-                <p class="card-species">{{ character.species }}</p>
-                <button class="card-button-details" type="button" (click)="changeCharacterId(character.id)">Detalhes</button>
-            </div>
-        </ng-container>
+            </ng-container>
+        <!-- </ng-container> -->
+        <!-- <ng-container *ngIf="setOrigin">
+            <ng-container *ngFor="let char of originCharacters">
+                <div class="card">
+                    <img src={{char.image}} class="card-image" alt="Foto do {{char.name}}" >
+                    <p class="card-name">{{ char.name }}</p>
+                    <div class="card-identify">
+                        <p class="card-gener">{{ char.gender }}</p>
+                        <p id="card-status" [ngClass]="{
+                            'character-alive': char.status === 'Alive',
+                            'character-dead': char.status === 'Dead',
+                            'character-unknown': char.status === 'unknown'
+                          }">{{ char.status }}</p>
+                    </div>
+                    <hr>
+                    <p class="card-species">{{ char.species }}</p>
+                    <button class="card-button-details" type="button" (click)="changeCharacterId(char.id)">Detalhes</button>
+                </div>
+            </ng-container>
+        </ng-container> -->
     </section>
 </main>

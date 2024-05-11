@@ -3,7 +3,7 @@
     color: white;
     display: flex;
     flex-direction: row;
-    padding-left: 18%;
+    padding-left: 1.5%;
     padding-right: 1.5%;
 }
 
@@ -12,7 +12,7 @@
     display: flex;
     flex-direction: column;
     margin-top: 10%;
-    width: 30%;
+    width: 20%;
 }
 
 .conteudo-one span {
@@ -70,6 +70,8 @@
 
 .episode-number {
     font-weight: bold;
+    text-decoration: underline;
+    text-decoration-color: rgba(255, 255, 255, 0.5);
 }
 
 .list-button {

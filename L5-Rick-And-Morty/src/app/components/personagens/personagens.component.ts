@@ -4,6 +4,10 @@ import { SidebarComponent } from '../sidebar/sidebar.component';
 import { RickMortyService } from '../../rick-morty.service';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { SearchService } from '../../search.service';
+import { Subscription, tap } from 'rxjs';
+import { DataService } from '../../data.service';
+import { __values } from 'tslib';
 
 @Component({
   selector: 'app-personagens',
@@ -14,36 +18,57 @@ import { Router } from '@angular/router';
 })
 export class PersonagensComponent implements OnInit {
   characters: any[] = [];
-  isLoading: boolean = false;
   page: number = 1;
+  searchTerm: string = '';
+  isLoading: boolean = false;
+  setOrigin: boolean = true;
+  filterSubscription: Subscription | undefined;
+  dataSubscription: Subscription | undefined;
+  pageSubscription: Subscription | undefined;
+  isLoadingSubscription: Subscription | undefined;
 
-  constructor(private rickMortyFetchService: RickMortyService, private router: Router) {}
+  constructor(private rickMortyFetchService: RickMortyService, private router: Router, private searchService: SearchService, private dataService: DataService) {}
 
   ngOnInit(): void {
-    this.loadCharacters(this.page);
+    this.dataService.updatePage(this.page);
+    this.dataService.loadCharacters(this.page);
+    this.dataService.updateIsLoading(this.isLoading);
+    
+    this.pageSubscription = this.dataService.pageTerm$.subscribe(page => {
+      if (page !== 0) {
+        this.dataService.getPageTerm().pipe(
+          tap((value) => {
+            this.page = value;
+          })
+        ).subscribe()
+        console.log("Page: " + this.page);
+      }
+    });
+    this.dataSubscription = this.dataService.characters$.subscribe(data => {
+      this.dataService.getData().pipe(
+        tap((data) => {
+          this.characters = data;
+        })
+      ).subscribe()
+      console.log("Characters: " + this.characters.length);
+    });
+    this.isLoadingSubscription = this.dataService.isLoadingTerm$.subscribe(value => {
+      this.isLoading = value;
+    });
+
+    this.registerScrollListener();
   }
 
-  @HostListener('window:scroll', ['$event'])
-  onScroll(event: any): void {
+  registerScrollListener(): void {
+    window.addEventListener('scroll', this.onScroll.bind(this));
+  }
+
+  onScroll(): void {
     if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight - 10) {
       if (!this.isLoading) {
-        this.loadCharacters(this.page)
+        this.dataService.loadCharacters(this.page);
       }
     }
-  }
-
-  loadCharacters(page: number): void {
-    this.isLoading = true;
-    this.rickMortyFetchService.getCharacters(page)
-      .then((data: any) => {
-        this.characters = this.characters.concat(data);
-        this.isLoading = false;
-        this.page++;
-      })
-      .catch(error => {
-        console.error("Erro:", error);
-        this.isLoading = false;
-      });
   }
 
   changeCharacterId(id: number) {
