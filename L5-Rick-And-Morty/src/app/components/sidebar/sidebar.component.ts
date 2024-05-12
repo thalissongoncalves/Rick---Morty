@@ -5,6 +5,7 @@ import { RickMortyService } from '../../rick-morty.service';
 import { PersonagensComponent } from '../personagens/personagens.component';
 import { Subscription, map, take, tap } from 'rxjs';
 import { DataService } from '../../data.service';
+import { EpisodesService } from '../../episodes.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -17,7 +18,7 @@ export class SidebarComponent {
   searchTerm: string = "";
   pageSubscription: Subscription | undefined;
   
-  constructor(private searchService: SearchService, private dataService: DataService) {}
+  constructor(private searchService: SearchService, private dataService: DataService, private episodeService: EpisodesService) {}
 
   ngOnInit(): void {
     this.pageSubscription = this.searchService.searchTerm$.subscribe(term => {
@@ -33,8 +34,10 @@ export class SidebarComponent {
     this.searchService.updateSearchTerm(this.searchTerm);
     if (this.searchTerm === "") {
       this.dataService.updateSetFilter(false);
+      this.episodeService.updateSetFilter(false);
     } else {
       this.dataService.updateSetFilter(true);
+      this.episodeService.updateSetFilter(true);
     }
   }
 

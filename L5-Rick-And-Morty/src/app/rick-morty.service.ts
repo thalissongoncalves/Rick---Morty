@@ -64,6 +64,20 @@ export class RickMortyService {
     }
   }
 
+  async getAllEpisodes(page: number): Promise<any> {
+    try {
+      const response = await fetch(`${this.apiUrl}/episode?page=${page}`);
+      if (!response.ok) {
+        throw new Error("Erro ao buscar episódios");
+      }
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error("Erro:", error);
+      return [];
+    }
+  }
+
   async getEpisodeById(id: number): Promise<any> {
     try {
       const response = await fetch(`${this.apiUrl}/episode/${id}`);

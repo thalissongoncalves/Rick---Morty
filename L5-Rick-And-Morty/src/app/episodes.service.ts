@@ -6,31 +6,31 @@ import { SearchService } from './search.service';
 @Injectable({
   providedIn: 'root'
 })
-export class DataService {
-  private charactersSubject: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
-  characters$: Observable<any[]> = this.charactersSubject.asObservable();
+export class EpisodesService {
+  private episodesSubject: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
+  episodes$: Observable<any[]> = this.episodesSubject.asObservable();
   private pageSubject: BehaviorSubject<number> = new BehaviorSubject<number>(1);
   pageTerm$: Observable<number> = this.pageSubject.asObservable();
   private isLoadingSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   isLoadingTerm$: Observable<boolean> = this.isLoadingSubject.asObservable();
   private setFilterSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   setFilterTerm$: Observable<boolean> = this.setFilterSubject.asObservable();
-  private characters: any[] = [];
-  private allCharacters: any[] = [];
+  private episodes: any[] = [];
+  private allEpisodes: any[] = [];
+  private episodesFiltered: any[] = [];
   private pageTotal: number = 0;
   private searchTerm: string = "";
-  charactersFiltered: any[] = [];
 
   constructor(private rickMortyFetchService: RickMortyService, private searchService: SearchService) { }
 
-  loadCharacters(page: number): void {
+  loadEpisodes(page: number): void {
     this.updateIsLoading(true);
     if (page === 1) {
-      this.characters = [];
-      this.rickMortyFetchService.getCharacters(page)
+      this.episodes = [];
+      this.rickMortyFetchService.getEpisodies(page)
       .then((data: any) => {
-        this.characters = this.characters.concat(data);
-        this.updateCharactersSubject(this.characters);
+        this.episodes = this.episodes.concat(data);
+        this.updateEpisodesSubject(this.episodes);
         this.updateIsLoading(false);
         this.updatePage(page + 1);
       })
@@ -39,10 +39,10 @@ export class DataService {
         this.updateIsLoading(false);
       });
     } else {
-      this.rickMortyFetchService.getCharacters(page)
+      this.rickMortyFetchService.getEpisodies(page)
       .then((data: any) => {
-        this.characters = this.characters.concat(data);
-        this.updateCharactersSubject(this.characters);
+        this.episodes = this.episodes.concat(data);
+        this.updateEpisodesSubject(this.episodes);
         this.updateIsLoading(false);
         this.updatePage(page + 1);
       })
@@ -51,6 +51,7 @@ export class DataService {
         this.updateIsLoading(false);
       });
     }
+    
   }
 
   updateSetFilter(value: boolean): void {
@@ -58,39 +59,39 @@ export class DataService {
     if (value === false) {
       window.scrollTo({ top: 0, behavior: 'instant' });
       this.updatePage(1);
-      this.loadCharacters(1);
+      this.loadEpisodes(1);
     } else if (value === true) {
       this.searchService.searchTerm$.pipe(
         tap((text) => {
           this.searchTerm = text.toLowerCase();
           this.updateIsLoading(true);
-          const filteredCharacters = this.allCharacters.filter((char: any) => {
-            return char.name.toLowerCase().includes(this.searchTerm);
+          const filteredEpisodes = this.allEpisodes.filter((ep: any) => {
+            return ep.name.toLowerCase().includes(this.searchTerm);
           });
-          this.charactersFiltered = [];
-          filteredCharacters.forEach((character) => {
-            if (!this.charactersFiltered.some((char) => char.id === character.id)) {
-              this.charactersFiltered.push(character);
+          this.episodesFiltered = [];
+          filteredEpisodes.forEach((episode) => {
+            if (!this.episodesFiltered.some((ep) => ep.id === episode.id)) {
+              this.episodesFiltered.push(episode);
             }
           });
-          this.updateCharactersSubject(this.charactersFiltered);
-        })
+          this.updateEpisodesSubject(this.episodesFiltered);
+      })
       ).subscribe()
     }
   }
 
-  allCharactersGet(page: number) {
-    this.rickMortyFetchService.getAllCharacters(page)
+  allEpisodesGet(page: number) {
+    this.rickMortyFetchService.getAllEpisodes(page)
       .then((data: any) => {
         this.pageTotal = data.info.pages;
-        data.results.map((char: any) => {
-          this.allCharacters.push(char);
+        data.results.map((ep: any) => {
+          this.allEpisodes.push(ep);
         });
         if (page < this.pageTotal) {
-          this.allCharactersGet(page + 1);
+          this.allEpisodesGet(page + 1);
         }
       })
-      .catch ((error) => {
+      .catch ((error: any) => {
         console.error("Erro:", error);
       });
   }
@@ -111,12 +112,12 @@ export class DataService {
     return this.isLoadingTerm$;
   }
 
-  updateCharactersSubject(data: any[]): void {
-    this.charactersSubject.next(data);
+  updateEpisodesSubject(data: any[]): void {
+    this.episodesSubject.next(data);
   }
 
-  getData(): Observable<any> {
-    return this.characters$;
+  getEpisodes(): Observable<any> {
+    return this.episodes$;
   }
 
   getSetFilter(): Observable<boolean> {

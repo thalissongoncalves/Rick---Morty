@@ -22,20 +22,28 @@ export class PersonagensComponent implements OnInit {
   searchTerm: string = '';
   isLoading: boolean = false;
   setOrigin: boolean = true;
+  setFilter: boolean = false;
   filterSubscription: Subscription | undefined;
   dataSubscription: Subscription | undefined;
   pageSubscription: Subscription | undefined;
   isLoadingSubscription: Subscription | undefined;
   searchTemSubscription: Subscription | undefined;
 
-  constructor(private rickMortyFetchService: RickMortyService, private router: Router, private searchService: SearchService, private dataService: DataService) {}
+  constructor(private router: Router, private searchService: SearchService, private dataService: DataService) {}
 
   ngOnInit(): void {
     this.dataService.allCharactersGet(this.page);
     this.dataService.updatePage(this.page);
     this.dataService.updateIsLoading(this.isLoading);
-    
-    this.pageSubscription = this.dataService.pageTerm$.subscribe(page => {
+
+    this.searchService.searchTerm$.subscribe(value => {
+      this.searchService.getSearchTerm().pipe(
+        tap((text) => {
+          this.searchTerm = text;
+        })
+      ).subscribe()
+    })
+    this.dataService.pageTerm$.subscribe(page => {
       if (page !== 0) {
         this.dataService.getPageTerm().pipe(
           tap((value) => {
@@ -44,27 +52,20 @@ export class PersonagensComponent implements OnInit {
         ).subscribe()
       }
     });
-    this.dataSubscription = this.dataService.characters$.subscribe(data => {
+    this.dataService.characters$.subscribe(data => {
       this.dataService.getData().pipe(
         tap((data) => {
           this.characters = data;
         })
       ).subscribe()
     });
-    this.isLoadingSubscription = this.dataService.isLoadingTerm$.subscribe(value => {
+    this.dataService.isLoadingTerm$.subscribe(value => {
       this.dataService.getIsLoading().pipe(
         tap((value) => {
           this.isLoading = value;
         })
       ).subscribe()
     });
-    this.searchTemSubscription = this.searchService.searchTerm$.subscribe(value => {
-      this.searchService.getSearchTerm().pipe(
-        tap((text) => {
-          this.searchTerm = text;
-        })
-      ).subscribe()
-    })
 
     if (this.searchTerm !== "") {
       this.dataService.updateSetFilter(true);

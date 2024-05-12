@@ -5,6 +5,9 @@ import { RickMortyService } from '../../rick-morty.service';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { SearchService } from '../../search.service';
+import { Subscription, tap } from 'rxjs';
+import { DataService } from '../../data.service';
+import { EpisodesService } from '../../episodes.service';
 
 @Component({
   selector: 'app-episodios',
@@ -17,54 +20,70 @@ export class EpisodiosComponent implements OnInit {
   episodes: any[] = [];
   isLoading: boolean = false;
   page: number = 1;
-  filterSubscription: any;
   searchTerm: string = "";
+  filterSubscription: Subscription | undefined;
+  pageSubscription: Subscription | undefined;
+  dataSubscription: Subscription | undefined;
+  isLoadingSubscription: Subscription | undefined;
+  searchTemSubscription: Subscription | undefined;
 
-  constructor(private rickMortyFetchService: RickMortyService, private router: Router, private searchService: SearchService) {}
+  constructor(private router: Router, private searchService: SearchService, private episodesService: EpisodesService) {}
 
   ngOnInit(): void {
-    this.loadEpisodes(this.page);
-    this.filterSubscription = this.searchService.searchTerm$.subscribe(term => {
-      this.searchTerm = term;
-      // if (this.searchTerm !== '') {
-      //   this.allCharactersGet();
-      //   this.characters = this.allCharacters.filter((char: any) => {
-      //     return char.name.toLowerCase().includes(this.searchTerm.toLowerCase());
-      //   });
-      //   this.isLoading = true;
-      //   this.setOrigin = false;
-      // } else {
-      //   window.scrollTo({ top: 0, behavior: 'instant' });
-      //   this.originCharacters = [];
-      //   this.characters = [];
-      //   this.setOrigin = true;
-      //   this.page = 1;
-      //   this.loadCharacters(this.page);
-      // }
+    this.episodesService.allEpisodesGet(this.page);
+    this.episodesService.updatePage(this.page);
+    this.episodesService.updateIsLoading(this.isLoading);
+    
+    this.searchTemSubscription = this.searchService.searchTerm$.subscribe(value => {
+      this.searchService.getSearchTerm().pipe(
+        tap((text) => {
+          this.searchTerm = text;
+        })
+      ).subscribe()
+    })
+    this.pageSubscription = this.episodesService.pageTerm$.subscribe(page => {
+      if (page !== 0) {
+        this.episodesService.getPageTerm().pipe(
+          tap((value) => {
+            this.page = value;
+          })
+        ).subscribe()
+      }
     });
+    this.dataSubscription = this.episodesService.episodes$.subscribe(data => {
+      this.episodesService.getEpisodes().pipe(
+        tap((data) => {
+          this.episodes = data;
+        })
+      ).subscribe()
+    });
+    this.isLoadingSubscription = this.episodesService.isLoadingTerm$.subscribe(value => {
+      this.episodesService.getIsLoading().pipe(
+        tap((value) => {
+          this.isLoading = value;
+        })
+      ).subscribe()
+    });
+
+    if (this.searchTerm !== "") {
+      this.episodesService.updateSetFilter(true);
+    } else {
+      this.episodesService.updateSetFilter(false);
+    };
+
+    this.registerScrollListener();
   }
 
-  @HostListener('window:scroll', ['$event'])
-  onScroll(event: any): void {
+  registerScrollListener(): void {
+    window.addEventListener('scroll', this.onScroll.bind(this));
+  }
+
+  onScroll(): void {
     if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight - 10) {
       if (!this.isLoading) {
-        this.loadEpisodes(this.page)
+        this.episodesService.loadEpisodes(this.page);
       }
     }
-  }
-
-  loadEpisodes(page: number): void {
-    this.isLoading = true;
-    this.rickMortyFetchService.getEpisodies(page)
-      .then((data: any) => {
-        this.episodes = this.episodes.concat(data);
-        this.isLoading = false;
-        this.page++;
-      })
-      .catch(error => {
-        console.error("Erro:", error);
-        this.isLoading = false;
-      });
   }
 
   changeEpisodeId(id: number) {
