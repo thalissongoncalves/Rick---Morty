@@ -6,32 +6,32 @@ import { SearchService } from './search.service';
 @Injectable({
   providedIn: 'root'
 })
-export class DataService {
-  private charactersSubject: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
-  characters$: Observable<any[]> = this.charactersSubject.asObservable();
+export class LocationsService {
+  private locationsSubject: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
+  locations$: Observable<any[]> = this.locationsSubject.asObservable();
   private pageSubject: BehaviorSubject<number> = new BehaviorSubject<number>(1);
   pageTerm$: Observable<number> = this.pageSubject.asObservable();
   private isLoadingSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   isLoadingTerm$: Observable<boolean> = this.isLoadingSubject.asObservable();
   private setFilterSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   setFilterTerm$: Observable<boolean> = this.setFilterSubject.asObservable();
-  private characters: any[] = [];
-  private allCharacters: any[] = [];
+  private locations: any[] = [];
+  private allLocations: any[] = [];
+  private locationsFiltered: any[] = [];
   private pageTotal: number = 0;
-  private page: number = 1;
   private searchTerm: string = "";
-  charactersFiltered: any[] = [];
+  private page: number = 1;
 
   constructor(private rickMortyFetchService: RickMortyService, private searchService: SearchService) { }
 
-  loadCharacters(page: number): void {
+  loadLocations(page: number): void {
     this.updateIsLoading(true);
     if (page === 1) {
-      this.characters = [];
-      this.rickMortyFetchService.getCharacters(page)
+      this.locations = [];
+      this.rickMortyFetchService.getLocations(page)
       .then((data: any) => {
-        this.characters = this.characters.concat(data);
-        this.updateCharactersSubject(this.characters);
+        this.locations = this.locations.concat(data);
+        this.updateLocationsSubject(this.locations);
         this.updateIsLoading(false);
         this.updatePage(page + 1);
       })
@@ -40,10 +40,10 @@ export class DataService {
         this.updateIsLoading(false);
       });
     } else {
-      this.rickMortyFetchService.getCharacters(page)
+      this.rickMortyFetchService.getLocations(page)
       .then((data: any) => {
-        this.characters = this.characters.concat(data);
-        this.updateCharactersSubject(this.characters);
+        this.locations = this.locations.concat(data);
+        this.updateLocationsSubject(this.locations);
         this.updateIsLoading(false);
         this.updatePage(page + 1);
       })
@@ -52,6 +52,7 @@ export class DataService {
         this.updateIsLoading(false);
       });
     }
+    
   }
 
   updateSetFilter(value: boolean): void {
@@ -59,40 +60,40 @@ export class DataService {
     if (value === false) {
       window.scrollTo({ top: 0, behavior: 'instant' });
       this.updatePage(1);
-      this.loadCharacters(1);
+      this.loadLocations(1);
     } else if (value === true) {
       this.searchService.searchTerm$.pipe(
         tap((text) => {
           this.searchTerm = text.toLowerCase();
-        })
+      })
       ).subscribe()
-      this.allCharactersGet(this.page);
+      this.allLocationsGet(this.page);
       this.updateIsLoading(true);
-      const filteredCharacters = this.allCharacters.filter((char: any) => {
-        return char.name.toLowerCase().includes(this.searchTerm);
+      const filteredLocations = this.allLocations.filter((ep: any) => {
+        return ep.name.toLowerCase().includes(this.searchTerm);
       });
-      this.charactersFiltered = [];
-      filteredCharacters.forEach((character) => {
-        if (!this.charactersFiltered.some((char) => char.id === character.id)) {
-          this.charactersFiltered.push(character);
+      this.locationsFiltered = [];
+      filteredLocations.forEach((location) => {
+        if (!this.locationsFiltered.some((ep) => ep.id === location.id)) {
+          this.locationsFiltered.push(location);
         }
       });
-      this.updateCharactersSubject(this.charactersFiltered);
+      this.updateLocationsSubject(this.locationsFiltered);
     }
   }
 
-  allCharactersGet(page: number) {
-    this.rickMortyFetchService.getAllCharacters(page)
+  allLocationsGet(page: number) {
+    this.rickMortyFetchService.getAllLocations(page)
       .then((data: any) => {
         this.pageTotal = data.info.pages;
-        data.results.map((char: any) => {
-          this.allCharacters.push(char);
+        data.results.map((ep: any) => {
+          this.allLocations.push(ep);
         });
         if (page < this.pageTotal) {
-          this.allCharactersGet(page + 1);
+          this.allLocationsGet(page + 1);
         }
       })
-      .catch ((error) => {
+      .catch ((error: any) => {
         console.error("Erro:", error);
       });
   }
@@ -113,16 +114,15 @@ export class DataService {
     return this.isLoadingTerm$;
   }
 
-  updateCharactersSubject(data: any[]): void {
-    this.charactersSubject.next(data);
+  updateLocationsSubject(data: any[]): void {
+    this.locationsSubject.next(data);
   }
 
-  getData(): Observable<any> {
-    return this.characters$;
+  getLocations(): Observable<any> {
+    return this.locations$;
   }
 
   getSetFilter(): Observable<boolean> {
     return this.setFilterTerm$;
   }
-
 }

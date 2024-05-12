@@ -20,6 +20,7 @@ export class EpisodesService {
   private episodesFiltered: any[] = [];
   private pageTotal: number = 0;
   private searchTerm: string = "";
+  private page: number = 1;
 
   constructor(private rickMortyFetchService: RickMortyService, private searchService: SearchService) { }
 
@@ -64,19 +65,20 @@ export class EpisodesService {
       this.searchService.searchTerm$.pipe(
         tap((text) => {
           this.searchTerm = text.toLowerCase();
-          this.updateIsLoading(true);
-          const filteredEpisodes = this.allEpisodes.filter((ep: any) => {
-            return ep.name.toLowerCase().includes(this.searchTerm);
-          });
-          this.episodesFiltered = [];
-          filteredEpisodes.forEach((episode) => {
-            if (!this.episodesFiltered.some((ep) => ep.id === episode.id)) {
-              this.episodesFiltered.push(episode);
-            }
-          });
-          this.updateEpisodesSubject(this.episodesFiltered);
       })
       ).subscribe()
+      this.allEpisodesGet(this.page);
+      this.updateIsLoading(true);
+      const filteredEpisodes = this.allEpisodes.filter((ep: any) => {
+        return ep.name.toLowerCase().includes(this.searchTerm);
+      });
+      this.episodesFiltered = [];
+      filteredEpisodes.forEach((episode) => {
+        if (!this.episodesFiltered.some((ep) => ep.id === episode.id)) {
+          this.episodesFiltered.push(episode);
+        }
+      });
+      this.updateEpisodesSubject(this.episodesFiltered);
     }
   }
 

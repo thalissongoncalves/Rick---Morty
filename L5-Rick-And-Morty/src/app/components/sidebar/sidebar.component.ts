@@ -6,6 +6,7 @@ import { PersonagensComponent } from '../personagens/personagens.component';
 import { Subscription, map, take, tap } from 'rxjs';
 import { DataService } from '../../data.service';
 import { EpisodesService } from '../../episodes.service';
+import { LocationsService } from '../../locations.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -18,7 +19,7 @@ export class SidebarComponent {
   searchTerm: string = "";
   pageSubscription: Subscription | undefined;
   
-  constructor(private searchService: SearchService, private dataService: DataService, private episodeService: EpisodesService) {}
+  constructor(private searchService: SearchService, private dataService: DataService, private episodeService: EpisodesService, private locationService: LocationsService) {}
 
   ngOnInit(): void {
     this.pageSubscription = this.searchService.searchTerm$.subscribe(term => {
@@ -35,9 +36,11 @@ export class SidebarComponent {
     if (this.searchTerm === "") {
       this.dataService.updateSetFilter(false);
       this.episodeService.updateSetFilter(false);
+      this.locationService.updateSetFilter(false);
     } else {
       this.dataService.updateSetFilter(true);
       this.episodeService.updateSetFilter(true);
+      this.locationService.updateSetFilter(true);
     }
   }
 

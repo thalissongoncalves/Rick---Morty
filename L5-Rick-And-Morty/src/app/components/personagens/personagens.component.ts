@@ -43,6 +43,27 @@ export class PersonagensComponent implements OnInit {
         })
       ).subscribe()
     })
+
+    if (this.searchTerm !== "") {
+      this.dataService.updateSetFilter(true);
+      this.dataService.characters$.subscribe(data => {
+        this.dataService.getData().pipe(
+          tap((data) => {
+            this.characters = data;
+          })
+        ).subscribe()
+      });
+    } else {
+      this.dataService.updateSetFilter(false);
+      this.dataService.characters$.subscribe(data => {
+        this.dataService.getData().pipe(
+          tap((data) => {
+            this.characters = data;
+          })
+        ).subscribe()
+      });
+    };
+
     this.dataService.pageTerm$.subscribe(page => {
       if (page !== 0) {
         this.dataService.getPageTerm().pipe(
@@ -52,13 +73,7 @@ export class PersonagensComponent implements OnInit {
         ).subscribe()
       }
     });
-    this.dataService.characters$.subscribe(data => {
-      this.dataService.getData().pipe(
-        tap((data) => {
-          this.characters = data;
-        })
-      ).subscribe()
-    });
+
     this.dataService.isLoadingTerm$.subscribe(value => {
       this.dataService.getIsLoading().pipe(
         tap((value) => {
@@ -66,12 +81,6 @@ export class PersonagensComponent implements OnInit {
         })
       ).subscribe()
     });
-
-    if (this.searchTerm !== "") {
-      this.dataService.updateSetFilter(true);
-    } else {
-      this.dataService.updateSetFilter(false);
-    };
 
     this.registerScrollListener();
   }

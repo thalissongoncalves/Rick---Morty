@@ -120,4 +120,18 @@ export class RickMortyService {
     }
   }
 
+  async getAllLocations(page: number): Promise<any> {
+    try {
+      const response = await fetch(`${this.apiUrl}/location?page=${page}`);
+      if (!response.ok) {
+        throw new Error("Erro ao buscar localizacoes");
+      }
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error("Erro:", error);
+      return [];
+    }
+  }
+
 }

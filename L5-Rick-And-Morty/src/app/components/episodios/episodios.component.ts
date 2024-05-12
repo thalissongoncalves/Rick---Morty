@@ -1,12 +1,10 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CabecalhoComponent } from '../cabecalho/cabecalho.component';
 import { SidebarComponent } from '../sidebar/sidebar.component';
-import { RickMortyService } from '../../rick-morty.service';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { SearchService } from '../../search.service';
 import { Subscription, tap } from 'rxjs';
-import { DataService } from '../../data.service';
 import { EpisodesService } from '../../episodes.service';
 
 @Component({
@@ -25,7 +23,7 @@ export class EpisodiosComponent implements OnInit {
   pageSubscription: Subscription | undefined;
   dataSubscription: Subscription | undefined;
   isLoadingSubscription: Subscription | undefined;
-  searchTemSubscription: Subscription | undefined;
+  searchTermSubscription: Subscription | undefined;
 
   constructor(private router: Router, private searchService: SearchService, private episodesService: EpisodesService) {}
 
@@ -33,15 +31,36 @@ export class EpisodiosComponent implements OnInit {
     this.episodesService.allEpisodesGet(this.page);
     this.episodesService.updatePage(this.page);
     this.episodesService.updateIsLoading(this.isLoading);
-    
-    this.searchTemSubscription = this.searchService.searchTerm$.subscribe(value => {
+
+    this.searchService.searchTerm$.subscribe(value => {
       this.searchService.getSearchTerm().pipe(
         tap((text) => {
           this.searchTerm = text;
         })
       ).subscribe()
-    })
-    this.pageSubscription = this.episodesService.pageTerm$.subscribe(page => {
+    });
+    
+    if (this.searchTerm !== "") {
+      this.episodesService.updateSetFilter(true);
+      this.episodesService.episodes$.subscribe(data => {
+        this.episodesService.getEpisodes().pipe(
+          tap((data) => {
+            this.episodes = data;
+          })
+        ).subscribe()
+      })
+    } else {
+      this.episodesService.updateSetFilter(false);
+      this.episodesService.episodes$.subscribe(data => {
+        this.episodesService.getEpisodes().pipe(
+          tap((data) => {
+            this.episodes = data;
+          })
+        ).subscribe()
+      });
+    };
+
+    this.episodesService.pageTerm$.subscribe(page => {
       if (page !== 0) {
         this.episodesService.getPageTerm().pipe(
           tap((value) => {
@@ -50,26 +69,14 @@ export class EpisodiosComponent implements OnInit {
         ).subscribe()
       }
     });
-    this.dataSubscription = this.episodesService.episodes$.subscribe(data => {
-      this.episodesService.getEpisodes().pipe(
-        tap((data) => {
-          this.episodes = data;
-        })
-      ).subscribe()
-    });
-    this.isLoadingSubscription = this.episodesService.isLoadingTerm$.subscribe(value => {
+
+    this.episodesService.isLoadingTerm$.subscribe(value => {
       this.episodesService.getIsLoading().pipe(
         tap((value) => {
           this.isLoading = value;
         })
       ).subscribe()
     });
-
-    if (this.searchTerm !== "") {
-      this.episodesService.updateSetFilter(true);
-    } else {
-      this.episodesService.updateSetFilter(false);
-    };
 
     this.registerScrollListener();
   }
