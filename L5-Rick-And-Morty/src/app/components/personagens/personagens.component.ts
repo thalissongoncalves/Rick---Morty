@@ -26,12 +26,13 @@ export class PersonagensComponent implements OnInit {
   dataSubscription: Subscription | undefined;
   pageSubscription: Subscription | undefined;
   isLoadingSubscription: Subscription | undefined;
+  searchTemSubscription: Subscription | undefined;
 
   constructor(private rickMortyFetchService: RickMortyService, private router: Router, private searchService: SearchService, private dataService: DataService) {}
 
   ngOnInit(): void {
+    this.dataService.allCharactersGet(this.page);
     this.dataService.updatePage(this.page);
-    this.dataService.loadCharacters(this.page);
     this.dataService.updateIsLoading(this.isLoading);
     
     this.pageSubscription = this.dataService.pageTerm$.subscribe(page => {
@@ -41,7 +42,6 @@ export class PersonagensComponent implements OnInit {
             this.page = value;
           })
         ).subscribe()
-        console.log("Page: " + this.page);
       }
     });
     this.dataSubscription = this.dataService.characters$.subscribe(data => {
@@ -50,11 +50,27 @@ export class PersonagensComponent implements OnInit {
           this.characters = data;
         })
       ).subscribe()
-      console.log("Characters: " + this.characters.length);
     });
     this.isLoadingSubscription = this.dataService.isLoadingTerm$.subscribe(value => {
-      this.isLoading = value;
+      this.dataService.getIsLoading().pipe(
+        tap((value) => {
+          this.isLoading = value;
+        })
+      ).subscribe()
     });
+    this.searchTemSubscription = this.searchService.searchTerm$.subscribe(value => {
+      this.searchService.getSearchTerm().pipe(
+        tap((text) => {
+          this.searchTerm = text;
+        })
+      ).subscribe()
+    })
+
+    if (this.searchTerm !== "") {
+      this.dataService.updateSetFilter(true);
+    } else {
+      this.dataService.updateSetFilter(false);
+    };
 
     this.registerScrollListener();
   }

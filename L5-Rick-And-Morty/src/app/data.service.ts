@@ -18,6 +18,7 @@ export class DataService {
   private characters: any[] = [];
   private currentPage: number = 0;
   private allCharacters: any[] = [];
+  private charactersFiltered: any[] = [];
   private pageTotal: number = 0;
   private searchTerm: string = "";
 
@@ -59,27 +60,22 @@ export class DataService {
       window.scrollTo({ top: 0, behavior: 'instant' });
       this.updatePage(1);
       this.loadCharacters(1);
-    } else {
-      // this.updateIsLoading(true);
-      // this.getPageTerm().pipe(
-      //   tap((value) => {
-      //     this.currentPage = value;
-      //   })
-      // ).subscribe()
+    } else if (value === true) {
+      this.searchService.searchTerm$.pipe(
+        tap((text) => {
+          this.searchTerm = text.toLowerCase();
+        })
+      ).subscribe()
+      this.updateIsLoading(true);
+      // this.updateSetFilter(true);
       // this.allCharacters = [];
-      // this.allCharactersGet();
-      // this.searchService.searchTerm$.pipe(
-      //   tap((text) => {
-      //     this.searchTerm = text.toLowerCase();
-      //   })
-      // ).subscribe()
-      // if (this.searchTerm !== '') {
-      //   this.characters = this.allCharacters.filter((char: any) => {
-      //     return char.name.toLowerCase().includes(this.searchTerm);
-      //   });
-      //   this.updateIsLoading(true);
-      //   this.updateSetFilter(true);
-      // } else {
+      // this.allCharactersGet(this.currentPage);
+      // console.log(this.allCharacters);
+      this.characters = this.allCharacters.filter((char: any) => {
+        return char.name.toLowerCase().includes(this.searchTerm);
+      });
+      this.updateCharactersSubject(this.characters);
+      //  else {
       //   window.scrollTo({ top: 0, behavior: 'instant' });
       //   // this.originCharacters = [];
       //   // this.characters = [];
@@ -118,18 +114,16 @@ export class DataService {
     return this.setFilterTerm$;
   }
 
-  allCharactersGet() {
-    this.rickMortyFetchService.getAllCharacters(this.currentPage)
+  allCharactersGet(page: number) {
+    this.rickMortyFetchService.getAllCharacters(page)
       .then((data: any) => {
         this.pageTotal = data.info.pages;
-        console.log(this.pageTotal);
-        // data.results.map((char: any) => {
-        //   this.allCharacters.push(char);
-        // })
-        // while (this.currentPage < this.pageTotal) {
-        //   this.currentPage = this.currentPage + 1;
-        //   this.allCharactersGet();
-        // }
+        data.results.map((char: any) => {
+          this.allCharacters.push(char);
+        });
+        if (page < this.pageTotal) {
+          this.allCharactersGet(page + 1);
+        }
       })
       .catch ((error) => {
         console.error("Erro:", error);
