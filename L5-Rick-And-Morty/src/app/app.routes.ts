@@ -7,15 +7,20 @@ import { EpisodiosComponent } from './components/episodios/episodios.component';
 import { DetalhesEpComponent } from './components/detalhes-ep/detalhes-ep.component';
 import { LocalizacoesComponent } from './components/localizacoes/localizacoes.component';
 import { DetalhesLocComponent } from './components/detalhes-loc/detalhes-loc.component';
+import { LoginComponent } from './components/login/login.component';
+import { AuthGuard } from './auth.guard';
+import { ProfileComponent } from './components/profile/profile.component';
 
 export const routes: Routes = [
-    { path: '', component: HomeComponent },
-    { path: 'personagens', component: PersonagensComponent },
-    { path: 'personagens/:id', component: DetalhesPComponent },
-    { path: 'episodios', component: EpisodiosComponent },
-    { path: 'episodios/:id', component: DetalhesEpComponent },
-    { path: 'localizacoes', component: LocalizacoesComponent },
-    { path: 'localizacoes/:id', component: DetalhesLocComponent }
+    { path: '', component: LoginComponent},
+    { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
+    { path: 'personagens', component: PersonagensComponent, canActivate: [AuthGuard] },
+    { path: 'personagens/:id', component: DetalhesPComponent, canActivate: [AuthGuard] },
+    { path: 'episodios', component: EpisodiosComponent, canActivate: [AuthGuard] },
+    { path: 'episodios/:id', component: DetalhesEpComponent, canActivate: [AuthGuard] },
+    { path: 'localizacoes', component: LocalizacoesComponent, canActivate: [AuthGuard] },
+    { path: 'localizacoes/:id', component: DetalhesLocComponent, canActivate: [AuthGuard] },
+    { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({

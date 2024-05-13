@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { SearchService } from '../../search.service';
 import { Subscription, tap } from 'rxjs';
 import { EpisodesService } from '../../episodes.service';
+import { FavoriteService } from '../../favorite.service';
 
 @Component({
   selector: 'app-episodios',
@@ -25,7 +26,7 @@ export class EpisodiosComponent implements OnInit {
   isLoadingSubscription: Subscription | undefined;
   searchTermSubscription: Subscription | undefined;
 
-  constructor(private router: Router, private searchService: SearchService, private episodesService: EpisodesService) {}
+  constructor(private router: Router, private searchService: SearchService, private episodesService: EpisodesService, private favoriteService: FavoriteService) {}
 
   ngOnInit(): void {
     this.episodesService.allEpisodesGet(this.page);
@@ -95,6 +96,10 @@ export class EpisodiosComponent implements OnInit {
 
   changeEpisodeId(id: number) {
     this.router.navigateByUrl(`/episodios/${id}`);
+  }
+
+  favoriteEpisode(id: number, name: string, episode: string): void {
+    this.favoriteService.updateEpisodesFavorite({id, name, episode});
   }
 
 }

@@ -8,6 +8,7 @@ import { SearchService } from '../../search.service';
 import { Subscription, tap } from 'rxjs';
 import { DataService } from '../../data.service';
 import { __values } from 'tslib';
+import { FavoriteService } from '../../favorite.service';
 
 @Component({
   selector: 'app-personagens',
@@ -29,7 +30,7 @@ export class PersonagensComponent implements OnInit {
   isLoadingSubscription: Subscription | undefined;
   searchTemSubscription: Subscription | undefined;
 
-  constructor(private router: Router, private searchService: SearchService, private dataService: DataService) {}
+  constructor(private router: Router, private searchService: SearchService, private dataService: DataService, private favoriteService: FavoriteService) {}
 
   ngOnInit(): void {
     this.dataService.allCharactersGet(this.page);
@@ -99,6 +100,10 @@ export class PersonagensComponent implements OnInit {
 
   changeCharacterId(id: number) {
     this.router.navigateByUrl(`/personagens/${id}`);
+  }
+
+  favoriteCharacter(id: number, name: string, image: string): void {
+    this.favoriteService.updateCharactersFavorite({id, name, image});
   }
   
 }

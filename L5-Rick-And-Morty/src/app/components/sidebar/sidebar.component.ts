@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
 import { SearchService } from '../../search.service';
 import { FormsModule } from '@angular/forms';
-import { RickMortyService } from '../../rick-morty.service';
-import { PersonagensComponent } from '../personagens/personagens.component';
-import { Subscription, map, take, tap } from 'rxjs';
+import { Subscription, tap } from 'rxjs';
 import { DataService } from '../../data.service';
 import { EpisodesService } from '../../episodes.service';
 import { LocationsService } from '../../locations.service';

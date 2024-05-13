@@ -1,0 +1,35 @@
+<app-cabecalho></app-cabecalho>
+<main>
+    <section class="profile-container">
+        <div>
+            <h1>Personagens Favoritados</h1>
+            <div class="list-characters">
+                <ng-container *ngFor="let character of characters">
+                    <div class="card-character">
+                        <p>{{ character.name }}</p>
+                        <button type="button" class="card-button" (click)="removeCardCharacters(character.id)">
+                            <img src={{character.image}}>
+                        </button>
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+        <div>
+            <h1>Episódios Favoritados</h1>
+            <div class="list-episodes">
+                <ng-container *ngFor="let episode of episodes">
+                    <div class="card-episode">
+                        <p>{{ episode.name }}</p>
+                        <p>{{ episode.episode }}</p>
+                        <button type="button" class="card-button" (click)="removeCardEpisodes(episode.id)">
+                            Remover
+                        </button>
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+        <div>
+            <h1>Localizações Favoritadas</h1>
+        </div>
+    </section>
+</main>

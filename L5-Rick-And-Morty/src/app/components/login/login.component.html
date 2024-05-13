@@ -1,0 +1,21 @@
+<main>
+    <section class="page-login">
+        <div class="login-container">
+            <h1 class="title">Seja bem-vindo, <br />Faça seu login.</h1>
+            <form class="form">
+                <label for="user">
+                    Nome de usuário: <br />
+                    <input class="user" type="text" placeholder="Username..." id="user" name="userTerm" [(ngModel)]="userTerm" #userInput>
+                </label>
+                <label for="password">
+                    Senha: <br />
+                    <input class="password" type="text" placeholder="Password..." id="password" name="passwordTerm" [(ngModel)]="passwordTerm" #passwordInput>
+                </label>
+                <div class="buttons-auth">
+                    <button type="submit" class="button-submit" (click)="onLogin()">Entrar</button>
+                    <button type="button" class="button-register" (click)="onRegister()">Criar conta</button>
+                </div>
+            </form>
+        </div>
+    </section>
+</main>

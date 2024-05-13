@@ -1,11 +1,23 @@
 <header class="cabecalho">
     <div class="cabecalho-opacity">
-        <button (click)="changeLinkToHome()" class="button-logo"><img class="logo" src="/assets/logo.svg" alt="logo" aria-hidden="true"></button>
+        <button (click)="changeLinkToHome()" class="button-logo">
+            <img class="logo" src="../../../assets/logo.svg" alt="logo" aria-hidden="true">
+        </button>
         <nav class="nav-menu">
             <ul>
                 <li><button (click)="changeLinkToPersonagens()">Personagens</button></li>
                 <li><button (click)="changeLinkToEpisodios()">Episódios</button></li>
                 <li><button (click)="changeLinkToLocalizacoes()">Localizações</button></li>
+            </ul>
+        </nav>
+        <nav class="avatar-list">
+            <div class="avatar-menu" (click)="showList()">
+                <img src="../../../assets/Rick-avatar.webp" alt="Foto de perfil" class="cabecalho-avatar">
+                <p>{{ username }}</p>
+            </div>
+            <ul *ngIf="isListVisible">
+                <li><button (click)="changeLinkToProfile()">Meu Perfil</button></li>
+                <li><button (click)="logout()">Logout</button></li>
             </ul>
         </nav>
     </div>

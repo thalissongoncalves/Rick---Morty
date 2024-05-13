@@ -8,6 +8,9 @@
                 <span class="card-episode">{{ episode.episode }}</span>
                 <hr>
                 <button class="card-button-details" type="button" (click)="changeEpisodeId(episode.id)">Detalhes</button>
+                <button class="card-button-favorite" type="button" (click)="favoriteEpisode(episode.id, episode.name, episode.episode)">
+                    Favoritar
+                </button>
             </div>
         </ng-container>
     </section>
