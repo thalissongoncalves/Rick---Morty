@@ -17,6 +17,7 @@ export class CabecalhoComponent {
 
   constructor(private router: Router, private loginService: LoginService) { }
 
+  // Carrega o username global aqui no component
   ngOnInit() {
     this.loginService.getUserTerm().pipe(
       tap((user) => {
@@ -25,30 +26,37 @@ export class CabecalhoComponent {
     ).subscribe()
   }
 
+  // Serve para manipular o menu de perfil/logout
   showList(): void {
     this.isListVisible = !this.isListVisible;
   }
 
+  // Serve para alterar o isAuthenticated para false e fazer o logout
   logout(): void {
     this.loginService.logout();
   }
 
+  // muda a página para /home
   changeLinkToHome() {
     this.router.navigateByUrl('/home');
   }
 
+  // muda a página para /profile
   changeLinkToProfile() {
     this.router.navigateByUrl('/profile');
   }
 
+  // muda a página para /personagens
   changeLinkToPersonagens() {
     this.router.navigateByUrl('/personagens');
   }
 
+  // muda a página para /episodios
   changeLinkToEpisodios() {
     this.router.navigateByUrl('/episodios');
   }
 
+  // muda a página para /localizacoes
   changeLinkToLocalizacoes() {
     this.router.navigateByUrl('/localizacoes');
   }

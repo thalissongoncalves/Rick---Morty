@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 export class HomeComponent {
   constructor(private router: Router) { }
   
+  // serve para mudar para a página /personagens
   changeLinkToPersonagens() {
     this.router.navigateByUrl('/personagens');
   }

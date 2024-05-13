@@ -29,6 +29,7 @@ export class SidebarComponent {
     });
   }
 
+  // função para atualizar o valor global do searchTerm que armazena o valor do input para manipulação de outros componentes para renderizar os cards filtrados e toda vez que tem alguma digitação no input chamando as funções de filtragem de cards de cada serviço para manipulação dos dados
   updateSearchTerm() {
     this.searchService.updateSearchTerm(this.searchTerm);
     if (this.searchTerm === "") {

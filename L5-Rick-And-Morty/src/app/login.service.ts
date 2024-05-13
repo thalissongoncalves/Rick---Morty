@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
-import users from './users.json';
 import { Router } from '@angular/router';
 import { AuthService } from './auth.service';
 
@@ -8,16 +7,22 @@ import { AuthService } from './auth.service';
   providedIn: 'root'
 })
 export class LoginService {
+  // Reserva o valor de username da página de login
   private userTermSubject: BehaviorSubject<string> = new BehaviorSubject<string>('');
   userTerm$: Observable<string> = this.userTermSubject.asObservable();
+  // Reserva o valor de password da página de login
   private passwordTermSubject: BehaviorSubject<string> = new BehaviorSubject<string>('');
   passwordTerm$: Observable<string> = this.passwordTermSubject.asObservable();
+  // Reserva o valor de username da página de login para recuperar na aplicação
   private currentUser: string | null = null;
+  // Reserva o valor de username da página de login para recuperar na aplicação
   private username: string = "";
+  // Reserva o valor de password da página de login para recuperar na aplicação
   private password: string = "";
 
   constructor(private router: Router, private authService: AuthService) { }
 
+  // Função para recuperar o username e password e guardar no localstorage e fazer a verificação se já existe uma conta cadastrada ou não.
   login(): void {
     this.userTerm$.pipe(
       tap((username) => {
@@ -48,12 +53,14 @@ export class LoginService {
 
   }
 
+  // função reservada para fazer o logout da conta na aplicação
   logout(): void {
     this.authService.logout();
     this.router.navigate(['/']);
     this.updateUserTerm("");
   }
 
+  // função reservada para fazer o cadastro, verificar se contém conta no localstorage e se não tiver realiza o cadastro para fazer o login
   register(): void {
     let newUser = { id: 0, username: '', password: '' };
 
@@ -90,22 +97,27 @@ export class LoginService {
     
   }
 
+  // função reservada para pegar o nome do usuário atual
   getCurrentUser(): string | null {
     return this.currentUser;
   }
 
+  // função para atualizar a userTerm reservada para a username
   updateUserTerm(term: string): void {
     this.userTermSubject.next(term);
   }
 
+  // função para pegar a userTerm reservada para username
   getUserTerm(): Observable<string> {
     return this.userTerm$;
   }
 
+  // função para atualizar a passwordTerm reservada para a password
   updatePasswordTerm(term: string): void {
     this.passwordTermSubject.next(term);
   }
 
+  // função para pegar a passwordTerm reservada para uspassword
   getPasswordTerm(): Observable<string> {
     return this.passwordTerm$;
   }

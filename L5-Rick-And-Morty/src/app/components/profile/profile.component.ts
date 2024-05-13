@@ -20,6 +20,7 @@ export class ProfileComponent {
 
   constructor(private loginService: LoginService, private favoriteService: FavoriteService) {}
 
+  // Ao carregar a página recupera o nome do usuario, atualiza os valores globais dos personagens, episódios e localizações favoritadas e recupera-os para renderização dos cards
   ngOnInit() {
     this.loginService.getUserTerm().pipe(
       tap((user) => {
@@ -46,6 +47,7 @@ export class ProfileComponent {
     ).subscribe()
   }
 
+  // remove o card do array de personagens, fazendo assim sumir o card favoritado
   removeCardCharacters(id: number) {
     const index = this.characters.findIndex(ch => ch.id === id);
     if (index !== -1) {
@@ -53,6 +55,7 @@ export class ProfileComponent {
     }
   }
 
+  // remove o card do array de episódios, fazendo assim sumir o card favoritado
   removeCardEpisodes(id: number) {
     const index = this.episodes.findIndex(ep => ep.id === id);
     if (index !== -1) {
@@ -60,6 +63,7 @@ export class ProfileComponent {
     }
   }
 
+  // remove o card do array de localizações, fazendo assim sumir o card favoritado
   removeCardLocations(id: number) {
     const index = this.locations.findIndex(loc => loc.id === id);
     if (index !== -1) {

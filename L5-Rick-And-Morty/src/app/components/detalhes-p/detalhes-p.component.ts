@@ -21,6 +21,7 @@ export class DetalhesPComponent {
 
   constructor(private route: ActivatedRoute, private rickMortyFetchService: RickMortyService, private router: Router) {}
 
+  // Ao carregar a página, pega o id no parâmetro e carrega os detalhes do personagem e episódios que ele aparece
   ngOnInit(): void {
     this.id = this.route.snapshot.params["id"];
     this.rickMortyFetchService.getCharacterById(this.id)
@@ -50,6 +51,7 @@ export class DetalhesPComponent {
     
   }
 
+  // Serve para mudar para a página de episódio baseado no id passado quando clica no episódio listado na página de detalhe de personagem
   changeEpisodeId(id: any) {
     this.router.navigateByUrl(`/episodios/${id}`);
   }

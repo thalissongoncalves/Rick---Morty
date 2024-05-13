@@ -250,7 +250,7 @@ main {
 /* Para monitores de desktop comuns */
 @media only screen and (min-width: 1024px) and (max-width: 1440px) {
     .login-container {
-        height: 80vh;
+        height: 85vh;
         padding: 20px;
         width: 60vw;
     }
@@ -281,7 +281,7 @@ main {
 /* Para monitores de desktop widescreen */
 @media only screen and (min-width: 1441px) {
     .login-container {
-        height: 80vh;
+        height: 85vh;
         padding: 20px;
         width: 60vw;
     }

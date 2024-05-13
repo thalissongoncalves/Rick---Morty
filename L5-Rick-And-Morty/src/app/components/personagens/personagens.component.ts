@@ -32,6 +32,7 @@ export class PersonagensComponent implements OnInit {
 
   constructor(private router: Router, private searchService: SearchService, private dataService: DataService, private favoriteService: FavoriteService) {}
 
+  // Ao carregar a página, carrega todos os personagens, atualiza o número da página atual da api global, atualiza o isLoading para o scroll infinito, atualiza o searchTerm buscando-o globalmente, faz a verificação do searchTerm para filtragem de cards, atualiza o número da página atual do component, atualiza o isLoading
   ngOnInit(): void {
     this.dataService.allCharactersGet(this.page);
     this.dataService.updatePage(this.page);
@@ -86,10 +87,12 @@ export class PersonagensComponent implements OnInit {
     this.registerScrollListener();
   }
 
+  // serve para monitorar o scroll do mouse
   registerScrollListener(): void {
     window.addEventListener('scroll', this.onScroll.bind(this));
   }
 
+  // quando o scroll do mouse chega no final da página, ele carrega novos cards baseado na página atual do component
   onScroll(): void {
     if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight - 10) {
       if (!this.isLoading) {
@@ -98,10 +101,12 @@ export class PersonagensComponent implements OnInit {
     }
   }
 
+  // serve para mudar de página baseado no id do personagem selecionado
   changeCharacterId(id: number) {
     this.router.navigateByUrl(`/personagens/${id}`);
   }
 
+  // serve para favoritar o personagem, atualizando no favoriteService com o valor do card id, name e imagem
   favoriteCharacter(id: number, name: string, image: string): void {
     this.favoriteService.updateCharactersFavorite({id, name, image});
   }

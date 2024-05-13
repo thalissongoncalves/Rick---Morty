@@ -21,6 +21,7 @@ export class DetalhesLocComponent {
 
   constructor(private route: ActivatedRoute, private rickMortyFetchService: RickMortyService, private router: Router) {}
 
+  // Ao carregar a página, pega o id no parâmetro e carrega os detalhes da localização e personagens que nele habitam
   ngOnInit(): void {
     this.id = this.route.snapshot.params["id"];
     this.rickMortyFetchService.getLocationById(this.id)
@@ -50,6 +51,7 @@ export class DetalhesLocComponent {
     
   }
 
+  // Serve para mudar para a página de personagem baseado no id passado quando clica no personagem listado na página de detalhe de localização
   changeCharacterId(id: any) {
     this.router.navigateByUrl(`/personagens/${id}`);
   }

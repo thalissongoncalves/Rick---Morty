@@ -28,6 +28,7 @@ export class EpisodiosComponent implements OnInit {
 
   constructor(private router: Router, private searchService: SearchService, private episodesService: EpisodesService, private favoriteService: FavoriteService) {}
 
+   // Ao carregar a página, carrega todos os episódios, atualiza o número da página atual da api global, atualiza o isLoading para o scroll infinito, atualiza o searchTerm buscando-o globalmente, faz a verificação do searchTerm para filtragem de cards, atualiza o número da página atual do component, atualiza o isLoading
   ngOnInit(): void {
     this.episodesService.allEpisodesGet(this.page);
     this.episodesService.updatePage(this.page);
@@ -82,10 +83,12 @@ export class EpisodiosComponent implements OnInit {
     this.registerScrollListener();
   }
 
+  // serve para monitorar o scroll do mouse
   registerScrollListener(): void {
     window.addEventListener('scroll', this.onScroll.bind(this));
   }
 
+  // quando o scroll do mouse chega no final da página, ele carrega novos cards baseado na página atual do component
   onScroll(): void {
     if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight - 10) {
       if (!this.isLoading) {
@@ -94,10 +97,12 @@ export class EpisodiosComponent implements OnInit {
     }
   }
 
+  // serve para mudar de página baseado no id do episódio selecionado
   changeEpisodeId(id: number) {
     this.router.navigateByUrl(`/episodios/${id}`);
   }
 
+  // serve para favoritar o episódio, atualizando no favoriteService com o valor do card id, name e episode
   favoriteEpisode(id: number, name: string, episode: string): void {
     this.favoriteService.updateEpisodesFavorite({id, name, episode});
   }

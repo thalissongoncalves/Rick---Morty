@@ -6,9 +6,8 @@
     width: 100%;
 }
 
-.profile-container div {
+.profile-container-child {
     align-items: center;
-    height: 100px;
     margin: 20px;
     text-align: center;
     width: 90%;
@@ -130,4 +129,107 @@
     margin: 10px;
     padding: 5px;
     text-align: center;
+}
+
+/* Para smartphones em modo paisagem ou dispositivos um pouco maiores */
+@media only screen and (min-width: 320px) and (max-width: 375px) {
+    .profile-container {
+        flex-direction: column;
+        padding-top: 20%;
+    }
+
+    .title {
+        font-size: 15px;
+    }
+
+    .list-characters {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .card-character p {
+        font-size: 10px;
+    }
+
+    .list-characters img {
+        border-radius: 20px;
+        -webkit-box-shadow: 5px 5px 10px 0px rgba(0,0,0,1);
+        -moz-box-shadow: 5px 5px 10px 0px rgba(0,0,0,1);
+        box-shadow: 5px 5px 10px 0px rgba(0,0,0,1);
+        cursor: pointer;
+        width: 50px;
+    }
+
+    .card-button-two {
+        margin-top: 5px;
+        width: 25vw;
+    }
+}
+
+/* Para tablets e dispositivos maiores em modo retrato */
+@media only screen and (min-width: 375px) and (max-width: 768px) {
+    .profile-container {
+        flex-direction: column;
+        padding-top: 25%;
+    }
+
+    .title {
+        font-size: 25px;
+    }
+
+    .list-characters {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .card-character p {
+        font-size: 10px;
+    }
+
+    .list-characters img {
+        border-radius: 20px;
+        -webkit-box-shadow: 5px 5px 10px 0px rgba(0,0,0,1);
+        -moz-box-shadow: 5px 5px 10px 0px rgba(0,0,0,1);
+        box-shadow: 5px 5px 10px 0px rgba(0,0,0,1);
+        cursor: pointer;
+        width: 50px;
+    }
+
+    .card-button-two {
+        margin-top: 5px;
+        width: 25vw;
+    }
+}
+
+/* Para tablets maiores e laptops */
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+    .profile-container {
+        flex-direction: column;
+        padding-top: 25%;
+    }
+
+    .title {
+        font-size: 35px;
+    }
+
+    .list-characters {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .card-character p, .card-episode p, .card-location p {
+        font-size: 20px;
+    }
+
+    .list-characters img {
+        border-radius: 20px;
+        -webkit-box-shadow: 5px 5px 10px 0px rgba(0,0,0,1);
+        -moz-box-shadow: 5px 5px 10px 0px rgba(0,0,0,1);
+        box-shadow: 5px 5px 10px 0px rgba(0,0,0,1);
+        cursor: pointer;
+        width: 100px;
+    }
+
+    .card-button-two {
+        font-size: 15px;
+        margin-top: 5px;
+        width: 25vw;
+    }
 }

@@ -29,6 +29,7 @@ export class LocalizacoesComponent {
 
   constructor(private router: Router, private searchService: SearchService, private locationService: LocationsService, private favoriteService: FavoriteService) {}
 
+  // Ao carregar a página, carrega todas as localizações, atualiza o número da página atual da api global, atualiza o isLoading para o scroll infinito, atualiza o searchTerm buscando-o globalmente, faz a verificação do searchTerm para filtragem de cards, atualiza o número da página atual do component, atualiza o isLoading
   ngOnInit(): void {
     this.locationService.allLocationsGet(this.page);
     this.locationService.updatePage(this.page);
@@ -83,10 +84,12 @@ export class LocalizacoesComponent {
     this.registerScrollListener();
   }
 
+  // serve para monitorar o scroll do mouse
   registerScrollListener(): void {
     window.addEventListener('scroll', this.onScroll.bind(this));
   }
 
+  // quando o scroll do mouse chega no final da página, ele carrega novos cards baseado na página atual do component
   onScroll(): void {
     if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight - 10) {
       if (!this.isLoading) {
@@ -95,10 +98,12 @@ export class LocalizacoesComponent {
     }
   }
 
+  // serve para mudar de página baseado no id da localização selecionado
   changeLocationId(id: number) {
     this.router.navigateByUrl(`/localizacoes/${id}`);
   }
 
+  // serve para favoritar a localização, atualizando no favoriteService com o valor do card id, name e type
   favoriteLocation(id: number, name: string, type: string): void {
     this.favoriteService.updateLocationsFavorite({id, name, type});
   }

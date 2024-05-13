@@ -326,9 +326,9 @@
     }
 
     .cabecalho-avatar {
-        height: 75px;
+        height: 50px;
         margin-right: 10px;
-        width: 75px;
+        width: 50px;
     }
 
     .avatar-list {
@@ -359,7 +359,7 @@
     }
 
     .avatar-list ul {
-        top: calc(100% + 30px);
+        top: calc(100% + 15px);
         width: 200px;
     }
 }

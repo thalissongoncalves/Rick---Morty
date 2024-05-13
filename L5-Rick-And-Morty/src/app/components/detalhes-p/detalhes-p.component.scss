@@ -3,6 +3,7 @@
     color: white;
     display: flex;
     flex-direction: row;
+    height: 100vh;
     padding-left: 1.5%;
     padding-right: 1.5%;
 }
@@ -82,4 +83,120 @@
     font-size: 15px;
     margin: 10px;
     text-align: left;
+}
+
+/* Para smartphones em modo paisagem ou dispositivos um pouco maiores */
+@media only screen and (min-width: 320px) and (max-width: 375px) {
+    .conteudo-one {
+        margin-top: 30%;
+        width: 30%;
+    }
+    
+    .conteudo-two {
+        margin-top: 30%;
+        width: 70%;
+    }
+
+    .two-title {
+        font-size: 10px;
+    }
+
+    .list-button {
+        font-size: 10px;
+    }
+
+    .list-episodes {
+        margin-left: 20px;
+    }
+
+    .character-name {
+        font-size: 10px;
+    }
+
+    #character-status {
+        font-size: 10px;
+    }
+
+    .character-gender, .character-location, .character-origin, .character-specie {
+        font-size: 10px;
+    }
+}
+
+/* Para tablets e dispositivos maiores em modo retrato */
+@media only screen and (min-width: 375px) and (max-width: 768px) {
+    .conteudo-one {
+        margin-top: 30%;
+        width: 30%;
+    }
+    
+    .conteudo-two {
+        margin-top: 30%;
+        width: 70%;
+    }
+
+    .two-title {
+        font-size: 13px;
+    }
+
+    .list-button {
+        font-size: 10px;
+    }
+
+    .list-episodes {
+        margin-left: 20px;
+    }
+
+    .character-name {
+        font-size: 10px;
+    }
+
+    #character-status {
+        font-size: 10px;
+    }
+
+    .character-gender, .character-location, .character-origin, .character-specie {
+        font-size: 10px;
+    }
+}
+
+/* Para tablets maiores e laptops */
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+    .conteudo-one {
+        margin-top: 25%;
+        width: 30%;
+    }
+    
+    .conteudo-two {
+        margin-top: 25%;
+        width: 70%;
+    }
+
+    .two-title {
+        font-size: 20px;
+    }
+
+    .list-button {
+        font-size: 15px;
+    }
+
+    .list-episodes {
+        margin-left: 20px;
+    }
+
+    .character-name {
+        font-size: 15px;
+    }
+
+    #character-status {
+        font-size: 15px;
+    }
+
+    .character-gender, .character-location, .character-origin, .character-specie {
+        font-size: 15px;
+    }
+}
+
+/* Para monitores de desktop comuns */
+@media only screen and (min-width: 1024px) and (max-width: 1440px) {
+
 }

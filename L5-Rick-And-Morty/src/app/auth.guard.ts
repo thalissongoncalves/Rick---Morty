@@ -10,6 +10,7 @@ export class AuthGuard implements CanActivate {
 
   constructor(private authService: AuthService, private router: Router) {}
 
+  // serve para definir o AuthGuard nas rotas para evitar de utilizar as rotas sem estar logado
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {

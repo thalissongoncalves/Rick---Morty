@@ -1,12 +1,12 @@
 <app-cabecalho></app-cabecalho>
 <main>
     <section class="profile-container">
-        <div>
+        <div class="profile-container-child">
             <h1 class="title">Personagens Favoritados</h1>
             <div class="list-characters">
                 <ng-container *ngFor="let character of characters">
                     <div class="card-character">
-                        <p>{{ character.name }}</p>
+                        <p class="card-name-character">{{ character.name }}</p>
                         <button type="button" class="card-button" (click)="removeCardCharacters(character.id)">
                             <img src={{character.image}}>
                         </button>
@@ -14,7 +14,7 @@
                 </ng-container>
             </div>
         </div>
-        <div>
+        <div class="profile-container-child">
             <h1 class="title">Episódios Favoritados</h1>
             <div class="list-episodes">
                 <ng-container *ngFor="let episode of episodes">
@@ -28,7 +28,7 @@
                 </ng-container>
             </div>
         </div>
-        <div>
+        <div class="profile-container-child">
             <h1 class="title">Localizações Favoritadas</h1>
             <div class="list-locations">
                 <ng-container *ngFor="let location of locations">

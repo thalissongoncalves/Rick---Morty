@@ -1,27 +1,21 @@
 # L5RickAndMorty
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.7.
+## Passo 01:
 
-## Development server
+Clone o repositório utilizando o git glone ou crie um fork;
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Passo 02:
 
-## Code scaffolding
+Se não tiver o Angular CLI, instale utilizando o comando `npm install -g @angular/cli` em sua máquina;
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Passo 03:
 
-## Build
+Se não tiver o Node.js, pesquise no google `Node.js` e baixe e instale a última versão;
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Passo 04:
 
-## Running unit tests
+Dentro do repositório clonado use o comando `cd L5-Rick-And-Morty` e depois use o comando `npm install`;
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Passo 05:
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Para ver a aplicação funcionando em localhost, utilize `ng serve` e vá para o link `localhost:4200`.

@@ -8,6 +8,7 @@ export class RickMortyService {
 
   constructor() {}
 
+  // função de chamada get para pegar os personagens da API
   async getCharacters(page: number): Promise<any> {
     try {
       const response = await fetch(`${this.apiUrl}/character?page=${page}`);
@@ -22,6 +23,7 @@ export class RickMortyService {
     }
   }
 
+  // função de chamada get para pegar TODOS os personagens da API, a diferença aqui é que to pegando o data em vez do data.results para pegar o número total de páginas para filtragem
   async getAllCharacters(page: number): Promise<any> {
     try {
       const response = await fetch(`${this.apiUrl}/character?page=${page}`);
@@ -36,6 +38,7 @@ export class RickMortyService {
     }
   }
 
+  // função de chamada get para pegar um personagem da API pelo id
   async getCharacterById(id: number): Promise<any> {
     try {
       const response = await fetch(`${this.apiUrl}/character/${id}`);
@@ -50,6 +53,7 @@ export class RickMortyService {
     }
   }
 
+  // função de chamada get para pegar os episódios por página da API
   async getEpisodies(page: number): Promise<any> {
     try {
       const response = await fetch(`${this.apiUrl}/episode?page=${page}`);
@@ -64,6 +68,7 @@ export class RickMortyService {
     }
   }
 
+  // função de chamada get para pegar todos os episódios via API
   async getAllEpisodes(page: number): Promise<any> {
     try {
       const response = await fetch(`${this.apiUrl}/episode?page=${page}`);
@@ -78,6 +83,7 @@ export class RickMortyService {
     }
   }
 
+  // função para pegar episódio pelo id via API
   async getEpisodeById(id: number): Promise<any> {
     try {
       const response = await fetch(`${this.apiUrl}/episode/${id}`);
@@ -92,6 +98,7 @@ export class RickMortyService {
     }
   }
 
+  // função para pegar localizações por página via API
   async getLocations(page: number): Promise<any> {
     try {
       const response = await fetch(`${this.apiUrl}/location?page=${page}`);
@@ -106,6 +113,7 @@ export class RickMortyService {
     }
   }
 
+  // função para pegar localizações por id via API
   async getLocationById(id: number): Promise<any> {
     try {
       const response = await fetch(`${this.apiUrl}/location/${id}`);
@@ -120,6 +128,7 @@ export class RickMortyService {
     }
   }
 
+  // função para pegar todas as localizações via API
   async getAllLocations(page: number): Promise<any> {
     try {
       const response = await fetch(`${this.apiUrl}/location?page=${page}`);
