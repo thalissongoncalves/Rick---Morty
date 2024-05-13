@@ -105,26 +105,145 @@ main {
 }
 
 /* Para smartphones em modo paisagem ou dispositivos um pouco maiores */
-@media only screen and (min-width: 321px) and (max-width: 375px) {
+@media only screen and (min-width: 320px) and (max-width: 375px) {
+    .conteudo-one {
+        margin-left: 0;
+        padding-top: 25%;
+        text-align: center;
+        width: 100%;
+    }
 
+    .conteudo-one h1 {
+        font-size: 25px;
+    }
+
+    .conteudo {
+        height: 100vh;
+        flex-direction: column;
+    }
+
+    .conteudo-two {
+        height: auto;
+        margin: auto;
+        width: 80%;
+    }
+
+    .card-conteudo {
+        height: 250px;
+        margin-top: 30px;
+        width: 70%;
+    }
+
+    .rick-photo {
+        height: 50px;
+    }
+
+    .card-especies {
+        font-size: 15px;
+    }
 }
 
 /* Para tablets e dispositivos maiores em modo retrato */
-@media only screen and (min-width: 376px) and (max-width: 768px) {
+@media only screen and (min-width: 375px) and (max-width: 768px) {
+    .conteudo-one {
+        margin-left: 0;
+        padding-top: 25%;
+        text-align: center;
+        width: 100%;
+    }
 
+    .conteudo-one h1 {
+        font-size: 30px;
+    }
+
+    .conteudo {
+        height: 100vh;
+        flex-direction: column;
+    }
+
+    .conteudo-two {
+        height: auto;
+        margin: auto;
+        width: 80%;
+    }
+
+    .card-conteudo {
+        height: 300px;
+        margin-top: 30px;
+        width: 70%;
+    }
+
+    .rick-photo {
+        height: 75px;
+        width: 70px;
+    }
+
+    .card-especies {
+        font-size: 20px;
+    }
 }
 
 /* Para tablets maiores e laptops */
-@media only screen and (min-width: 769px) and (max-width: 1024px) {
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+    .conteudo-one {
+        margin-left: 0;
+        padding-top: 20%;
+        text-align: center;
+        width: 100%;
+    }
 
+    .conteudo-one h1 {
+        font-size: 50px;
+    }
+
+    .conteudo {
+        height: 100vh;
+        flex-direction: column;
+    }
+
+    .conteudo-two {
+        margin: auto;
+        width: 80%;
+    }
+
+    .card-conteudo {
+        height: 400px;
+        width: 60%;
+    }
+
+    .rick-photo {
+        height: 100px;
+        width: 95px;
+    }
+
+    .card-especies {
+        font-size: 25px;
+    }
 }
 
 /* Para monitores de desktop comuns */
-@media only screen and (min-width: 1025px) and (max-width: 1440px) {
+@media only screen and (min-width: 1024px) and (max-width: 1440px) {
+    .conteudo-one {
+        margin-left: 5%;
+        padding-top: 5%;
+        text-align: left;
+        width: 100%;
+    }
 
-}
+    .conteudo-one h1 {
+        font-size: 75px;
+    }
 
-/* Para monitores de desktop widescreen */
-@media only screen and (min-width: 1441px) {
+    .conteudo {
+        height: 100vh;
+    }
 
+    .conteudo-two {
+        margin: auto;
+        width: 80%;
+    }
+
+    .card-especies {
+        font-size: 25px;
+    }
 }

@@ -131,3 +131,80 @@ input:-webkit-autofill:active {
     -webkit-transition: "color 9999s ease-out, background-color 9999s ease-out";
     -webkit-transition-delay: 9999s;
 }
+
+/* Para dispositivos pequenos, como smartphones em modo retrato */
+@media only screen and (max-width: 320px) {
+    
+}
+
+/* Para smartphones em modo paisagem ou dispositivos um pouco maiores */
+@media only screen and (min-width: 320px) and (max-width: 375px) {
+    .side-bar {
+        max-width: 40%;
+    }
+
+    .side-bar p {
+        font-size: 10px;
+    }
+
+    .form {
+        --inline-padding-of-inpu: 1.2em;
+        --gap: 0.7em;
+    }
+
+    .form label {
+        padding: 0.6em;
+    }
+
+    .input::placeholder {
+        font-size: 7px;
+    }
+}
+
+/* Para tablets e dispositivos maiores em modo retrato */
+@media only screen and (min-width: 375px) and (max-width: 768px) {
+    .side-bar {
+        max-width: 40%;
+    }
+
+    .side-bar p {
+        font-size: 15px;
+    }
+
+    .form {
+        --inline-padding-of-inpu: 1em;
+        --gap: 1em;
+    }
+
+    .form label {
+        padding: 0.6em;
+    }
+
+    .input::placeholder {
+        font-size: 8px;
+    }
+}
+
+/* Para tablets maiores e laptops */
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+    .side-bar {
+        max-width: 40%;
+    }
+
+    .side-bar p {
+        font-size: 25px;
+    }
+
+    .form {
+        --inline-padding-of-inpu: 1.5em;
+        --gap: 2em;
+    }
+
+    .form label {
+        padding: 0.6em;
+    }
+
+    .input::placeholder {
+        font-size: 13px;
+    }
+}
