@@ -39,12 +39,30 @@
     border-radius: 20px;
     color: #272B33;
     font-size: 13px;
+    margin-bottom: 10px;
     padding: 3%;
     width: 8vw;
     transition: transform 0.3s ease;
 }
 
 .card-button-details:hover {
+    background-color: rgb(86, 255, 202);
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+.card-button-favorite {
+    background-color: white;
+    border: 1px solid #272B33;
+    border-radius: 20px;
+    color: #272B33;
+    font-size: 13px;
+    padding: 3%;
+    width: 8vw;
+    transition: transform 0.3s ease;
+}
+
+.card-button-favorite:hover {
     background-color: rgb(86, 255, 202);
     cursor: pointer;
     transform: scale(1.1);

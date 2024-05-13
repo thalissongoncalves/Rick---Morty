@@ -38,6 +38,12 @@ export class ProfileComponent {
         this.episodes = ep;
       })
     ).subscribe()
+    this.favoriteService.updateLocationsFavoriteSubject();
+    this.favoriteService.getLocationsFavoriteSubject().pipe(
+      tap((loc) => {
+        this.locations = loc;
+      })
+    ).subscribe()
   }
 
   removeCardCharacters(id: number) {
@@ -51,6 +57,13 @@ export class ProfileComponent {
     const index = this.episodes.findIndex(ep => ep.id === id);
     if (index !== -1) {
       this.episodes.splice(index, 1);
+    }
+  }
+
+  removeCardLocations(id: number) {
+    const index = this.locations.findIndex(loc => loc.id === id);
+    if (index !== -1) {
+      this.locations.splice(index, 1);
     }
   }
 

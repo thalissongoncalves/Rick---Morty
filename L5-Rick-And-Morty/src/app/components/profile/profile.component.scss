@@ -8,11 +8,15 @@
 
 .profile-container div {
     align-items: center;
-    color: white;
     height: 100px;
     margin: 20px;
     text-align: center;
     width: 90%;
+}
+
+.title {
+    color: white;
+    font-weight: bold;
 }
 
 .profile-avatar {
@@ -31,6 +35,7 @@
 }
 
 .list-characters p {
+    color: white;
     font-weight: bold;
     margin-bottom: 5px;
 }
@@ -53,4 +58,76 @@
 .card-button {
     background-color: transparent;
     border: none;
+}
+
+.list-episodes {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-top: 20px;
+}
+
+.list-episodes p {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.card-episode {
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.850);
+    border-radius: 30px;
+    -webkit-box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.7);
+    -moz-box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.7);
+    box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.7);
+    color: #272B33;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin: 10px;
+    padding: 5px;
+    text-align: center;
+}
+
+.card-button-two {
+    background-color: white;
+    border: 1px solid #272B33;
+    border-radius: 20px;
+    color: #272B33;
+    font-size: 13px;
+    margin-bottom: 10px;
+    padding: 3%;
+    width: 8vw;
+    transition: transform 0.3s ease;
+}
+
+.card-button-two:hover {
+    background-color: rgb(86, 255, 202);
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+.list-locations {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-top: 20px;
+}
+
+.list-locations p {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.card-location {
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.850);
+    border-radius: 30px;
+    -webkit-box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.7);
+    -moz-box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.7);
+    box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.7);
+    color: #272B33;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin: 10px;
+    padding: 5px;
+    text-align: center;
 }

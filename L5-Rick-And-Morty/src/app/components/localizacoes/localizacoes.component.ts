@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { Subscription, tap } from 'rxjs';
 import { SearchService } from '../../search.service';
 import { LocationsService } from '../../locations.service';
+import { FavoriteService } from '../../favorite.service';
 
 @Component({
   selector: 'app-localizacoes',
@@ -26,7 +27,7 @@ export class LocalizacoesComponent {
   isLoadingSubscription: Subscription | undefined;
   searchTermSubscription: Subscription | undefined;
 
-  constructor(private router: Router, private searchService: SearchService, private locationService: LocationsService) {}
+  constructor(private router: Router, private searchService: SearchService, private locationService: LocationsService, private favoriteService: FavoriteService) {}
 
   ngOnInit(): void {
     this.locationService.allLocationsGet(this.page);
@@ -96,5 +97,9 @@ export class LocalizacoesComponent {
 
   changeLocationId(id: number) {
     this.router.navigateByUrl(`/localizacoes/${id}`);
+  }
+
+  favoriteLocation(id: number, name: string, type: string): void {
+    this.favoriteService.updateLocationsFavorite({id, name, type});
   }
 }

@@ -8,6 +8,9 @@
                 <span class="card-location">{{ location.type }}</span>
                 <hr>
                 <button class="card-button-details" type="button" (click)="changeLocationId(location.id)">Detalhes</button>
+                <button class="card-button-favorite" type="button" (click)="favoriteLocation(location.id, location.name, location.type)">
+                    Favoritar
+                </button>
             </div>
         </ng-container>
     </section>

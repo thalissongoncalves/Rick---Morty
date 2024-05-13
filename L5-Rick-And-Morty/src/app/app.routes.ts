@@ -13,14 +13,14 @@ import { ProfileComponent } from './components/profile/profile.component';
 
 export const routes: Routes = [
     { path: '', component: LoginComponent},
-    { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
-    { path: 'personagens', component: PersonagensComponent, canActivate: [AuthGuard] },
-    { path: 'personagens/:id', component: DetalhesPComponent, canActivate: [AuthGuard] },
-    { path: 'episodios', component: EpisodiosComponent, canActivate: [AuthGuard] },
-    { path: 'episodios/:id', component: DetalhesEpComponent, canActivate: [AuthGuard] },
-    { path: 'localizacoes', component: LocalizacoesComponent, canActivate: [AuthGuard] },
-    { path: 'localizacoes/:id', component: DetalhesLocComponent, canActivate: [AuthGuard] },
-    { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] }
+    { path: 'home', component: HomeComponent },
+    { path: 'personagens', component: PersonagensComponent },
+    { path: 'personagens/:id', component: DetalhesPComponent },
+    { path: 'episodios', component: EpisodiosComponent },
+    { path: 'episodios/:id', component: DetalhesEpComponent },
+    { path: 'localizacoes', component: LocalizacoesComponent },
+    { path: 'localizacoes/:id', component: DetalhesLocComponent },
+    { path: 'profile', component: ProfileComponent }
 ];
 
 @NgModule({

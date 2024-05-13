@@ -2,7 +2,7 @@
 <main>
     <section class="profile-container">
         <div>
-            <h1>Personagens Favoritados</h1>
+            <h1 class="title">Personagens Favoritados</h1>
             <div class="list-characters">
                 <ng-container *ngFor="let character of characters">
                     <div class="card-character">
@@ -15,13 +15,13 @@
             </div>
         </div>
         <div>
-            <h1>Episódios Favoritados</h1>
+            <h1 class="title">Episódios Favoritados</h1>
             <div class="list-episodes">
                 <ng-container *ngFor="let episode of episodes">
                     <div class="card-episode">
                         <p>{{ episode.name }}</p>
-                        <p>{{ episode.episode }}</p>
-                        <button type="button" class="card-button" (click)="removeCardEpisodes(episode.id)">
+                        <span>{{ episode.episode }}</span>
+                        <button type="button" class="card-button-two" (click)="removeCardEpisodes(episode.id)">
                             Remover
                         </button>
                     </div>
@@ -29,7 +29,19 @@
             </div>
         </div>
         <div>
-            <h1>Localizações Favoritadas</h1>
+            <h1 class="title">Localizações Favoritadas</h1>
+            <div class="list-locations">
+                <ng-container *ngFor="let location of locations">
+                    <div class="card-location">
+                        <p>{{ location.name }}</p>
+                        <span>{{ location.type }}</span>
+                        <span>{{ location.dimension }}</span>
+                        <button type="button" class="card-button-two" (click)="removeCardLocations(location.id)">
+                            Remover
+                        </button>
+                    </div>
+                </ng-container>
+            </div>
         </div>
     </section>
 </main>

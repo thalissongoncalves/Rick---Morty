@@ -44,4 +44,18 @@ export class FavoriteService {
   getEpisodesFavoriteSubject() {
     return this.episodesFavorite$;
   }
+
+  updateLocationsFavorite(data: object | any): void {
+    if (!this.locationsFavorite.some((loc) => loc.id === data.id)) {
+      this.locationsFavorite.push(data);
+    }
+  }
+
+  updateLocationsFavoriteSubject(): void {
+    this.locationsFavoriteSubject.next(this.locationsFavorite);
+  }
+
+  getLocationsFavoriteSubject() {
+    return this.locationsFavorite$;
+  }
 }

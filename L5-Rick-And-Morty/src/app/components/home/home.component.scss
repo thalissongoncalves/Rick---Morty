@@ -98,3 +98,33 @@ main {
     justify-content: space-evenly;
     width: 100%;
 }
+
+/* Para dispositivos pequenos, como smartphones em modo retrato */
+@media only screen and (max-width: 320px) {
+    
+}
+
+/* Para smartphones em modo paisagem ou dispositivos um pouco maiores */
+@media only screen and (min-width: 321px) and (max-width: 375px) {
+
+}
+
+/* Para tablets e dispositivos maiores em modo retrato */
+@media only screen and (min-width: 376px) and (max-width: 768px) {
+
+}
+
+/* Para tablets maiores e laptops */
+@media only screen and (min-width: 769px) and (max-width: 1024px) {
+
+}
+
+/* Para monitores de desktop comuns */
+@media only screen and (min-width: 1025px) and (max-width: 1440px) {
+
+}
+
+/* Para monitores de desktop widescreen */
+@media only screen and (min-width: 1441px) {
+
+}
