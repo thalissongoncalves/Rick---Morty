@@ -125,41 +125,6 @@ main {
     width: 70%;
 }
 
-/* Para dispositivos pequenos, como smartphones em modo retrato ou apple watch */
-@media only screen and (max-width: 320px) {
-    .login-container {
-        height: 90vh;
-        width: 90vw;
-    }
-
-    .title {
-        font-size: 15px;
-        margin-bottom: 0px;
-    }
-
-    .form label {
-        font-size: 10px;
-        margin-bottom: 0;
-    }
-
-    .form input {
-        height: 0.5px;
-        margin-bottom: 0;
-        margin-top: 0;
-    }
-
-    .buttons-auth {
-        width: 90%;
-    }
-
-    .button-submit, .button-register {
-        font-size: 7px;
-        margin: 0;
-        width: 35vw;
-    }
-}
-
-/* Para smartphones em modo paisagem ou dispositivos um pouco maiores */
 @media only screen and (min-width: 320px) and (max-width: 375px) {
     .login-container {
         height: 80vh;
@@ -188,7 +153,6 @@ main {
     }
 }
 
-/* Para tablets e dispositivos maiores em modo retrato */
 @media only screen and (min-width: 375px) and (max-width: 768px) {
     .login-container {
         height: 80vh;
@@ -217,7 +181,6 @@ main {
     }
 }
 
-/* Para tablets maiores e laptops */
 @media only screen and (min-width: 768px) and (max-width: 1024px) {
     .login-container {
         height: 70vh;
@@ -247,7 +210,6 @@ main {
     }
 }
 
-/* Para monitores de desktop comuns */
 @media only screen and (min-width: 1024px) and (max-width: 1440px) {
     .login-container {
         height: 85vh;
@@ -278,8 +240,7 @@ main {
     }
 }
 
-/* Para monitores de desktop widescreen */
-@media only screen and (min-width: 1441px) {
+@media only screen and (min-width: 1440px) {
     .login-container {
         height: 85vh;
         padding: 20px;

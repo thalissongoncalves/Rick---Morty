@@ -99,12 +99,6 @@ main {
     width: 100%;
 }
 
-/* Para dispositivos pequenos, como smartphones em modo retrato */
-@media only screen and (max-width: 320px) {
-    
-}
-
-/* Para smartphones em modo paisagem ou dispositivos um pouco maiores */
 @media only screen and (min-width: 320px) and (max-width: 375px) {
     .conteudo-one {
         margin-left: 0;
@@ -143,7 +137,6 @@ main {
     }
 }
 
-/* Para tablets e dispositivos maiores em modo retrato */
 @media only screen and (min-width: 375px) and (max-width: 768px) {
     .conteudo-one {
         margin-left: 0;
@@ -183,7 +176,6 @@ main {
     }
 }
 
-/* Para tablets maiores e laptops */
 @media only screen and (min-width: 768px) and (max-width: 1024px) {
     .conteudo-one {
         margin-left: 0;
@@ -221,7 +213,6 @@ main {
     }
 }
 
-/* Para monitores de desktop comuns */
 @media only screen and (min-width: 1024px) and (max-width: 1440px) {
     .conteudo-one {
         margin-left: 5%;
