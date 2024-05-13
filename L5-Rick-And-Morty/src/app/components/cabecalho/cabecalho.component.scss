@@ -138,3 +138,233 @@
     font-size: 15px;
     font-weight: bold;
 }
+
+/* Para dispositivos pequenos, como smartphones em modo retrato */
+@media only screen and (max-width: 320px) {
+    .button-logo, .logo {
+        display: none;
+    }
+
+    .nav-menu {
+        display: block;
+        margin-left: 5px;
+        width: 10px;
+    }
+    
+    .nav-menu ul li {
+        margin: 8px;
+    }
+    
+    .nav-menu ul li:hover {
+        transform: scale(1.1);
+    }
+    
+    .nav-menu ul li button {
+        font-size: 9px;
+        font-weight: bold;
+    }
+    
+    .nav-menu ul li button:hover {
+        color: rgb(86, 255, 202);
+    }
+
+    .cabecalho-avatar {
+        height: 35px;
+        margin-right: 5px;
+        width: 35px;
+    }
+
+    .avatar-list {
+        position: relative;
+        left: calc(65%);
+        margin: 0;
+    }
+
+    .avatar-menu p {
+        font-size: 10px;
+        margin-left: 0;
+    }
+
+    .avatar-list>ul>li>button {
+        font-size: 10px;
+    }
+}
+
+/* Para smartphones em modo paisagem ou dispositivos um pouco maiores */
+@media only screen and (min-width: 321px) and (max-width: 375px) {
+    .button-logo, .logo {
+        display: none;
+    }
+
+    .nav-menu {
+        display: block;
+        margin-left: 5px;
+        width: 10px;
+    }
+    
+    .nav-menu ul li {
+        margin: 8px;
+    }
+    
+    .nav-menu ul li:hover {
+        transform: scale(1.1);
+    }
+    
+    .nav-menu ul li button {
+        font-size: 10px;
+        font-weight: bold;
+    }
+    
+    .nav-menu ul li button:hover {
+        color: rgb(86, 255, 202);
+    }
+
+    .cabecalho-avatar {
+        height: 35px;
+        margin-right: 10px;
+        width: 35px;
+    }
+
+    .avatar-list {
+        position: relative;
+        left: calc(65%);
+        margin: 0;
+    }
+
+    .avatar-menu p {
+        font-size: 10px;
+        margin-left: 0;
+    }
+
+    .avatar-list>ul>li>button {
+        font-size: 12px;
+    }
+}
+
+/* Para tablets e dispositivos maiores em modo retrato */
+@media only screen and (min-width: 375px) and (max-width: 768px) {
+    .button-logo, .logo {
+        display: none;
+    }
+
+    .nav-menu {
+        display: block;
+        margin-left: 5px;
+        width: 10px;
+    }
+    
+    .nav-menu ul li {
+        margin: 6px;
+    }
+    
+    .nav-menu ul li:hover {
+        transform: scale(1.1);
+    }
+    
+    .nav-menu ul li button {
+        font-size: 12px;
+        font-weight: bold;
+    }
+    
+    .nav-menu ul li button:hover {
+        color: rgb(86, 255, 202);
+    }
+
+    .cabecalho-avatar {
+        height: 35px;
+        margin-right: 10px;
+        width: 35px;
+    }
+
+    .avatar-list {
+        position: relative;
+        left: calc(65%);
+        margin: 0;
+    }
+
+    .avatar-menu p {
+        font-size: 12px;
+        margin-left: 0;
+    }
+
+    .avatar-list>ul>li>button {
+        font-size: 12px;
+    }
+
+    .avatar-list ul {
+        top: calc(100% + 35px);
+    }
+}
+
+/* Para tablets maiores e laptops */
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+    .button-logo, .logo {
+        display: none;
+    }
+
+    .nav-menu {
+        display: block;
+        margin-left: 5px;
+        width: 10px;
+    }
+    
+    .nav-menu ul li {
+        margin: 20px;
+    }
+    
+    .nav-menu ul li:hover {
+        transform: scale(1.1);
+    }
+    
+    .nav-menu ul li button {
+        font-size: 20px;
+        font-weight: bold;
+    }
+    
+    .nav-menu ul li button:hover {
+        color: rgb(86, 255, 202);
+    }
+
+    .cabecalho-avatar {
+        height: 75px;
+        margin-right: 10px;
+        width: 75px;
+    }
+
+    .avatar-list {
+        position: relative;
+        left: calc(70%);
+        margin: 0;
+    }
+
+    .avatar-menu p {
+        font-size: 20px;
+        margin-left: 0;
+    }
+
+    .avatar-list>ul>li>button {
+        font-size: 15px;
+    }
+
+    .avatar-list ul {
+        top: calc(100% + 40px);
+        width: 200px;
+    }
+}
+
+/* Para monitores de desktop comuns */
+@media only screen and (min-width: 1025px) and (max-width: 1440px) {
+    .avatar-list>ul>li>button {
+        font-size: 17px;
+    }
+
+    .avatar-list ul {
+        top: calc(100% + 30px);
+        width: 200px;
+    }
+}
+
+/* Para monitores de desktop widescreen */
+@media only screen and (min-width: 1441px) {
+
+}
